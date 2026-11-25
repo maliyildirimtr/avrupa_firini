@@ -52,3 +52,11 @@ test('statik dosyalar kopyalanır', () => {
   assert.ok(existsSync(join(hedef, 'css/site.css')));
   assert.ok(existsSync(join(hedef, 'data/site.js')));
 });
+
+test('arama motoru dosyaları: robots, sitemap (6 sayfa), 404', () => {
+  assert.match(readFileSync(join(hedef, 'robots.txt'), 'utf8'), /Sitemap: https:\/\/avrupafirini\.com\/sitemap\.xml/);
+  const sm = readFileSync(join(hedef, 'sitemap.xml'), 'utf8');
+  assert.equal((sm.match(/<loc>/g) || []).length, 6);
+  assert.ok(existsSync(join(hedef, '404.html')));
+  assert.ok(!oku('404.html').includes('{{'));
+});
