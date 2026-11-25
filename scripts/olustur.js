@@ -17,6 +17,19 @@ export function sablonuDoldur(sablon, p) {
   });
 }
 
+const BAS_ORTAK = `<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:site_name" content="Avrupa Fırını">
+<meta name="theme-color" content="#1F3A6E">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/site.css">`;
+
 const jsonld = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 
 export function parcalar(site, sayfa) {
@@ -40,6 +53,7 @@ export function parcalar(site, sayfa) {
     ekmekOnizleme: site.urunler.filter((u) => u.kategori === 'ekmek').slice(0, 6).map(urunKarti).join('\n'),
     isletmeVerisi: jsonld(yapilandirilmisVeri(site)),
     yil: String(new Date().getFullYear()),
+    basOrtak: BAS_ORTAK,
   };
   for (const k of ['ekmek', 'kete', 'lezzet']) {
     const liste = site.urunler.filter((u) => u.kategori === k);
