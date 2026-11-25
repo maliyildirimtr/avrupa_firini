@@ -68,7 +68,7 @@ export function urunDetay(urun) {
 export function bugunFirindaHTML(sonuc, site) {
   const { durum, gun, saatler } = sonuc;
   const mesajlar = {
-    acik: `Şu an açığız · ${site.saatler[sonuc.gun]?.kapanis ?? saatler.kapanis}'ye kadar`,
+    acik: `Şu an açığız · ${saatler.kapanis}'ye kadar`,
     acilacak: `Bugün ${saatler.acilis}'de açıyoruz`,
     kapandi: `Bugün kapandık · ${GUN_ADLARI[gun]} ${saatler.acilis}'de görüşmek üzere`,
     kapali: `Bugün (Pazar) kapalıyız · ${GUN_ADLARI[gun]} ${saatler.acilis}'de görüşmek üzere`,
@@ -80,7 +80,7 @@ export function bugunFirindaHTML(sonuc, site) {
     : '';
   const herGun = `<ul class="bugun__liste">${sonuc.herGun.map(isim).join('')}</ul>`;
   return `<div class="bugun bugun--${durum}">
-  <p class="bugun__durum"><span class="nokta" aria-hidden="true"></span>${kacis(mesajlar[durum])}</p>
+  <p class="bugun__durum"><span class="nokta" aria-hidden="true"></span>${mesajlar[durum]}</p>
   <h2 class="bugun__baslik">${baslik}</h2>
   ${ozel}
   ${herGun}
