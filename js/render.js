@@ -112,3 +112,42 @@ export function saatlerListesi(site) {
   };
   return `<ul class="saatler">${GUNLER.map(satir).join('')}</ul>`;
 }
+
+export const MENU = [
+  ['index.html', 'Ana Sayfa'],
+  ['ekmeklerimiz.html', 'Ekmeklerimiz'],
+  ['keteler.html', 'Keteler'],
+  ['lezzetler.html', 'Lezzetler'],
+  ['cizelge.html', 'Çizelge'],
+  ['iletisim.html', 'İletişim'],
+];
+
+export function ustKisim(site, aktif) {
+  const linkler = MENU.map(([href, ad]) =>
+    `<li><a href="${href}"${href === aktif ? ' aria-current="page"' : ''}>${ad}</a></li>`).join('');
+  return `<header class="ust">
+  <a class="marka" href="index.html" aria-label="${kacis(site.firma.ad)} ana sayfa">
+    <span class="marka__ad">${kacis(site.firma.ad)}</span>
+    <span class="marka__yil">1977'den beri</span>
+  </a>
+  <button class="menu-dugme" type="button" aria-expanded="false" aria-controls="ana-menu">Menü</button>
+  <nav id="ana-menu" class="ana-menu" aria-label="Ana menü"><ul>${linkler}</ul></nav>
+</header>`;
+}
+
+export function altKisim(site) {
+  const f = site.firma;
+  const tel = f.telefonlar.map((t) => `<a href="tel:+90${t.replace(/\D/g, '').replace(/^0/, '')}">${kacis(t)}</a>`).join('<br>');
+  return `<footer class="alt">
+  <div class="alt__ic">
+    <div>
+      <p class="alt__marka">${kacis(f.ad)}</p>
+      <p>1977'den beri Trabzon'da taş fırında. ${kacis(f.aciklama)}</p>
+    </div>
+    <div><h2>Adres</h2><address>${kacis(f.adres)}</address></div>
+    <div><h2>Telefon</h2><p>${tel}</p></div>
+    <div><h2>Instagram</h2><p><a href="${kacis(f.instagram)}" rel="noopener" target="_blank">@avrupafirini</a></p></div>
+  </div>
+  <p class="alt__telif">© ${f.kurulus}–<span data-yil></span> ${kacis(f.ad)}</p>
+</footer>`;
+}

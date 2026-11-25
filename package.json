@@ -2,5 +2,8 @@
   "name": "avrupa-firini",
   "private": true,
   "type": "module",
-  "scripts": { "test": "node --test \"tests/*.test.js\"" }
+  "scripts": {
+    "test": "node --test \"tests/*.test.js\"",
+    "build": "node scripts/olustur.js"
+  }
 }

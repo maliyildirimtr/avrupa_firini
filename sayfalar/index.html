@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Avrupa Fırını · Trabzon Ortahisar'da 1977'den beri taş fırın</title>
+<meta name="description" content="Trabzon Ortahisar'da 1977'den beri taş fırında doğal unlarla ekmek, ev yapımı kete, hamsili ekmek, siyez ve Gümüşhane ekmeği. Bugün fırında ne var, adres ve telefon.">
+<link rel="canonical" href="https://avrupafirini.com/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:title" content="Avrupa Fırını · 1977'den beri taş fırında">
+<meta property="og:description" content="Trabzon Ortahisar'da doğal unlu ekmekler, ev yapımı keteler ve hamsili ekmek.">
+<meta property="og:url" content="https://avrupafirini.com/">
+<meta name="theme-color" content="#1F3A6E">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="css/tema.css">
+<link rel="stylesheet" href="css/site.css">
+{{isletmeVerisi}}
+</head>
+<body>
+<a class="atla" href="#icerik">İçeriğe geç</a>
+{{ust}}
+<main id="icerik">
+  <section class="hero">
+    <div class="kap hero__ic">
+      <div class="hero__metin">
+        <h1>Trabzon'da 1977'den beri taş fırında</h1>
+        <p>Doğal unlarla yoğrulan ekmekler, ev yapımı keteler ve Karadeniz'in hamsili ekmeği. Her sabah Ortahisar'daki fırınımızda.</p>
+        <div class="dugmeler">
+          <a class="dugme" href="{{tel1Link}}">Hemen ara: {{tel1}}</a>
+          <a class="dugme dugme--ikincil" href="{{yolTarifi}}" rel="noopener" target="_blank">Yol tarifi al</a>
+        </div>
+      </div>
+      <div class="firin" role="img" aria-label="Taş fırının ağzında pişen ekmekler">
+        <img src="img/hero.jpg" alt="" onerror="this.remove()">
+      </div>
+    </div>
+  </section>
+
+  <section class="bugun-bant" aria-live="polite">
+    <div class="kap" id="bugun-firinda">
+      <div class="bugun">
+        <h2 class="bugun__baslik">Bugün fırında</h2>
+        <p>Pazartesi–Cumartesi açığız, Pazar kapalıyız. Hangi gün ne çıktığını <a href="cizelge.html">haftalık çizelgede</a> görebilirsiniz.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bolum onecikan">
+    <div class="kap">
+      <div class="bolum__ust">
+        <h2>Fırınımızın öne çıkanları</h2>
+        <p class="bolum__giris">Karadeniz'in tadı, taş fırının kokusu.</p>
+      </div>
+      <div class="izgara">
+{{onecikanlar}}
+      </div>
+    </div>
+  </section>
+
+  <section class="bolum">
+    <div class="kap">
+      <div class="bolum__ust">
+        <h2>Ekmeklerimiz</h2>
+        <a class="dugme" href="ekmeklerimiz.html">Tüm ekmekler ve içerikleri</a>
+      </div>
+      <div class="izgara">
+{{ekmekOnizleme}}
+      </div>
+    </div>
+  </section>
+
+  <section class="bolum hikaye">
+    <div class="kap hikaye__ic">
+      <p class="hikaye__yil" aria-hidden="true">1977</p>
+      <div>
+        <h2>Aynı fırın, aynı özen</h2>
+        <p>Avrupa Fırını 1977'den beri Trabzon Ortahisar'da. Mamüllerimiz doğal unlardan yapılıp taş fırında pişiyor; keteler hâlâ ev usulü açılıyor.</p>
+        <p><a class="dugme dugme--ikincil" href="keteler.html">Ketelerimizi tanıyın</a></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bolum" id="instagram" hidden></section>
+
+  <section class="bolum acik-zemin" id="ziyaret">
+    <div class="kap ziyaret__ic">
+      <iframe class="harita" src="{{haritaEmbed}}" title="Avrupa Fırını harita konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div>
+        <h2>Bizi ziyaret edin</h2>
+        <address>{{adres}}</address>
+        <p>{{telefonlar}}</p>
+        {{saatler}}
+        <div class="dugmeler">
+          <a class="dugme" href="{{yolTarifi}}" rel="noopener" target="_blank">Yol tarifi al</a>
+          {{whatsapp}}
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{{alt}}
+<script type="module" src="js/ortak.js"></script>
+<script type="module" src="js/sayfa-anasayfa.js"></script>
+</body>
+</html>
