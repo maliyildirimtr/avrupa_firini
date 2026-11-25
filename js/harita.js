@@ -2,3 +2,4 @@ export const haritaEmbedUrl = (adres) => `https://www.google.com/maps?q=${encode
 export const yolTarifiUrl = (adres) => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(adres)}`;
 /** '0541 322 13 16' → 'tel:+905413221316' */
 export const telLink = (no) => `tel:+90${no.replace(/\D/g, '').replace(/^0/, '')}`;
+export const tamAdres = (f) => `${f.sokakAdresi}, ${f.ilce}/${f.il}`;

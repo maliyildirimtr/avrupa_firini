@@ -20,7 +20,9 @@ export const site = {
     kurulus: 1977,
     slogan: "1977'den beri",
     aciklama: 'Mamüllerimiz doğal unlardan yapılıp taş fırında pişmektedir.',
-    adres: 'Kemerkaya Mahallesi, Halkevi Sokak No: 22 B, Ortahisar/Trabzon',
+    sokakAdresi: 'Kemerkaya Mahallesi, Halkevi Sokak No: 22 B',
+    ilce: 'Ortahisar',
+    il: 'Trabzon',
     telefonlar: ['0541 322 13 16', '0462 322 13 16'],
     whatsapp: null, // ör. '0541 322 13 16' — numara netleşince yazın
     instagram: 'https://www.instagram.com/avrupafirini/',
@@ -115,7 +117,7 @@ export const site = {
       icerik: ['Karabuğday (greçka) unu', 'Buğday unu', 'Su', 'Tuz', 'Maya'],
       lezzet: 'Topraksı, hafif fındıksı bir aroma.',
       saglik: ['Karabuğday lif bakımından zengindir.'],
-      glutenIcerir: null,
+      glutenIcerir: true, // buğday unu da içerir
     }),
 
     // ——— KETELER ———

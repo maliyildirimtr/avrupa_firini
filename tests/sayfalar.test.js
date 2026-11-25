@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { olustur } from '../scripts/olustur.js';
-import { SAGLIK_NOTU } from '../js/render.js';
+import { SAGLIK_NOTU, COLYAK_NOTU } from '../js/render.js';
 
 const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const hedef = mkdtempSync(join(tmpdir(), 'af-'));
@@ -25,6 +25,10 @@ test('hiçbir sayfada doldurulmamış işaret kalmaz, her sayfada tek h1 ve baş
     assert.match(h, /<title>[^<]+Avrupa Fırını|<title>Avrupa Fırını/, s);
     assert.match(h, /<meta name="description" content="[^"]{50,}"/, s);
   }
+});
+
+test('ürün sayfalarında çölyak notu var', () => {
+  for (const s of ['ekmeklerimiz.html', 'keteler.html', 'lezzetler.html']) assert.ok(oku(s).includes(COLYAK_NOTU), s);
 });
 
 test('ekmekler sayfası: tüm ekmek detayları ve sağlık notu', () => {

@@ -4,9 +4,9 @@ import { readFileSync, writeFileSync, mkdirSync, cpSync, readdirSync, rmSync, ex
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
-  urunKarti, urunDetay, cizelgeTablosu, saatlerListesi, ustKisim, altKisim, kacis, SAGLIK_NOTU,
+  urunKarti, urunDetay, cizelgeTablosu, saatlerListesi, ustKisim, altKisim, kacis, SAGLIK_NOTU, COLYAK_NOTU,
 } from '../js/render.js';
-import { haritaEmbedUrl, yolTarifiUrl, telLink } from '../js/harita.js';
+import { haritaEmbedUrl, yolTarifiUrl, telLink, tamAdres } from '../js/harita.js';
 import { veriyiDogrula } from '../js/veri-dogrula.js';
 import { yapilandirilmisVeri, urunVerisi } from '../js/seo.js';
 
@@ -32,14 +32,16 @@ const BAS_ORTAK = `<meta charset="utf-8">
 
 const jsonld = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 
-export function parcalar(site, sayfa) {
+export function parcalar(site, sayfa, secenek = {}) {
+  const adres = tamAdres(site.firma);
   const p = {
     ust: ustKisim(site, sayfa),
     alt: altKisim(site),
     saatler: saatlerListesi(site),
     cizelge: cizelgeTablosu(site),
     saglikNotu: SAGLIK_NOTU,
-    adres: kacis(site.firma.adres),
+    colyakNotu: COLYAK_NOTU,
+    adres: kacis(adres),
     tel1: kacis(site.firma.telefonlar[0]),
     tel1Link: telLink(site.firma.telefonlar[0]),
     telefonlar: site.firma.telefonlar.map((t) => `<a href="${telLink(t)}">${kacis(t)}</a>`).join(' · '),
@@ -47,8 +49,8 @@ export function parcalar(site, sayfa) {
       ? `<a class="dugme dugme--ikincil" href="https://wa.me/90${site.firma.whatsapp.replace(/\D/g, '').replace(/^0/, '')}" rel="noopener">WhatsApp'tan yaz</a>`
       : '',
     instagram: kacis(site.firma.instagram),
-    haritaEmbed: kacis(haritaEmbedUrl(site.firma.adres)),
-    yolTarifi: kacis(yolTarifiUrl(site.firma.adres)),
+    haritaEmbed: kacis(haritaEmbedUrl(adres)),
+    yolTarifi: kacis(yolTarifiUrl(adres)),
     onecikanlar: site.urunler.filter((u) => u.onecikan).map(urunKarti).join('\n'),
     ekmekOnizleme: site.urunler.filter((u) => u.kategori === 'ekmek').slice(0, 6).map(urunKarti).join('\n'),
     isletmeVerisi: jsonld(yapilandirilmisVeri(site)),
@@ -58,13 +60,13 @@ export function parcalar(site, sayfa) {
   for (const k of ['ekmek', 'kete', 'lezzet']) {
     const liste = site.urunler.filter((u) => u.kategori === k);
     p[`kartlar:${k}`] = liste.map(urunKarti).join('\n');
-    p[`detaylar:${k}`] = liste.map(urunDetay).join('\n');
+    p[`detaylar:${k}`] = liste.map((u) => urunDetay(u, secenek)).join('\n');
     p[`urunVerisi:${k}`] = liste.map((u) => jsonld(urunVerisi(u, site))).join('\n');
   }
   return p;
 }
 
-export async function olustur(kok, hedef) {
+export async function olustur(kok, hedef, secenek = {}) {
   const { site } = await import(pathToFileURL(join(kok, 'data/site.js')).href + `?t=${Date.now()}`);
   const hatalar = veriyiDogrula(site);
   if (hatalar.length) throw new Error('Veri hataları:\n- ' + hatalar.join('\n- '));
@@ -74,7 +76,7 @@ export async function olustur(kok, hedef) {
   for (const d of ['robots.txt', 'sitemap.xml']) if (existsSync(join(kok, d))) cpSync(join(kok, d), join(hedef, d));
   const sayfalar = readdirSync(join(kok, 'sayfalar')).filter((d) => d.endsWith('.html'));
   for (const sayfa of sayfalar) {
-    const html = sablonuDoldur(readFileSync(join(kok, 'sayfalar', sayfa), 'utf8'), parcalar(site, sayfa));
+    const html = sablonuDoldur(readFileSync(join(kok, 'sayfalar', sayfa), 'utf8'), parcalar(site, sayfa, secenek));
     writeFileSync(join(hedef, sayfa), html);
   }
   return sayfalar;
@@ -82,6 +84,7 @@ export async function olustur(kok, hedef) {
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
-  const sayfalar = await olustur(kok, join(kok, 'dist'));
-  console.log(`dist/ hazır: ${sayfalar.join(', ')}`);
+  const taslakGoster = process.env.TASLAK === '1';
+  const sayfalar = await olustur(kok, join(kok, 'dist'), { taslakGoster });
+  console.log(`dist/ hazır: ${sayfalar.join(', ')}${taslakGoster ? ' (TASLAK ÖNİZLEME — yayınlamayın)' : ''}`);
 }

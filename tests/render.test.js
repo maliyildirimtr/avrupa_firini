@@ -1,13 +1,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  kacis, GUN_ADLARI, SAGLIK_NOTU, urunKarti, urunDetay, bugunFirindaHTML, cizelgeTablosu, saatlerListesi,
+  kacis, GUN_ADLARI, SAGLIK_NOTU, COLYAK_NOTU, urunKarti, urunDetay, bugunFirindaHTML, cizelgeTablosu, saatlerListesi,
 } from '../js/render.js';
 
 const temel = {
   id: 'cavdar', ad: 'Çavdar & "Siyez" <Özel>', kategori: 'ekmek', gunler: 'hergun',
   kisa: 'kısa', aciklama: 'açıklama', icerik: ['Un'], lezzet: 'güzel', saglik: [],
-  glutenIcerir: true, foto: 'img/urunler/cavdar.jpg',
+  glutenIcerir: true, foto: 'img/urunler/cavdar.jpg', dogrulandi: true,
 };
 const saat = { acilis: '07:00', kapanis: '20:00' };
 const site = {
@@ -50,20 +50,46 @@ test('sağlık bilgisi varsa not birebir eklenir, yoksa eklenmez', () => {
 
 test('glüten satırı', () => {
   assert.ok(urunDetay(temel).includes('Glüten içerir'));
-  assert.ok(urunDetay({ ...temel, glutenIcerir: null }).includes('Glüten bilgisi için fırınımıza danışın'));
+  assert.ok(urunDetay({ ...temel, glutenIcerir: null }).includes('glütensiz ürünümüz yoktur'));
 });
 
 test('bugün fırında durum mesajları', () => {
   const r = { gun: 'sali', saatler: saat, herGun: [temel], ozel: [] };
-  assert.ok(bugunFirindaHTML({ ...r, durum: 'acik' }, site).includes("Şu an açığız · 20:00'ye kadar"));
-  assert.ok(bugunFirindaHTML({ ...r, durum: 'acilacak' }, site).includes("Bugün 07:00'de açıyoruz"));
-  assert.ok(bugunFirindaHTML({ ...r, durum: 'kapandi' }, site).includes("Bugün kapandık · Salı 07:00'de görüşmek üzere"));
-  assert.ok(bugunFirindaHTML({ ...r, gun: 'pazartesi', durum: 'kapali' }, site).includes("Bugün (Pazar) kapalıyız · Pazartesi 07:00'de görüşmek üzere"));
+  assert.ok(bugunFirindaHTML({ ...r, durum: 'acik' }, site).includes('Şu an açığız · Kapanış 20:00'));
+  assert.ok(bugunFirindaHTML({ ...r, durum: 'acilacak' }, site).includes('Henüz açılmadık · Açılış 07:00'));
+  assert.ok(bugunFirindaHTML({ ...r, durum: 'kapandi' }, site).includes('Bugün kapandık · Salı açılış 07:00'));
+  assert.ok(bugunFirindaHTML({ ...r, gun: 'pazartesi', durum: 'kapali' }, site).includes('Bugün (Pazar) kapalıyız · Pazartesi açılış 07:00'));
+  const sonraki = bugunFirindaHTML({ ...r, durum: 'acik', saatler: { acilis: '06:30', kapanis: '18:00' } }, site);
+  assert.ok(!/'(ye|de|da|a|e) /.test(sonraki), 'saat sonrası Türkçe ek kullanılmamalı');
 });
 
-test('bugüne özel vurgusu', () => {
+test('bugüne özel vurgusu yalnızca bugün için', () => {
   const h = bugunFirindaHTML({ durum: 'acik', gun: 'sali', saatler: saat, herGun: [], ozel: [temel] }, site);
   assert.ok(h.includes('Bugüne özel'));
+  const yarin = bugunFirindaHTML({ durum: 'kapandi', gun: 'sali', saatler: saat, herGun: [], ozel: [temel] }, site);
+  assert.ok(!yarin.includes('Bugüne özel'));
+  assert.ok(yarin.includes('Yalnızca Salı'));
+});
+
+test('doğrulanmamış ürünün sağlık ve içindekiler bilgisi yayınlanmaz', () => {
+  const t = { ...temel, dogrulandi: false, saglik: ['Lif yüksek'] };
+  const h = urunDetay(t);
+  assert.ok(!h.includes('Lif yüksek'));
+  assert.ok(!h.includes('İçindekiler'));
+  assert.ok(!h.includes(SAGLIK_NOTU));
+});
+
+test('taslak önizleme modunda doğrulanmamış bilgi "taslak" etiketiyle görünür', () => {
+  const t = { ...temel, dogrulandi: false, saglik: ['Lif yüksek'] };
+  const h = urunDetay(t, { taslakGoster: true });
+  assert.ok(h.includes('Lif yüksek'));
+  assert.ok(h.includes('Taslak'));
+});
+
+test('glüten bilgisi belirsizse çölyak uyarısı verilir', () => {
+  const h = urunDetay({ ...temel, glutenIcerir: null });
+  assert.ok(h.includes(COLYAK_NOTU));
+  assert.ok(COLYAK_NOTU.includes('glütensiz ürünümüz yoktur'));
 });
 
 test('çizelge tablosu', () => {

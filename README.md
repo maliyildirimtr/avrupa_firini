@@ -36,13 +36,19 @@ Hepsi `data/site.js` içinde yapılır. Bitince `npm test`, sonra yayınlayın.
 - `id`: yalnızca küçük harf, rakam ve tire — `kete-cevizli` gibi (Türkçe karakter yok).
 - `kategori`: `'ekmek'`, `'kete'` ya da `'lezzet'`.
 - `onecikan: true` → ana sayfadaki "öne çıkanlar"da görünür.
-- `glutenIcerir`: `true` (içerir) ya da `null` (emin değilsek — "fırınımıza danışın" yazar). **Glütensiz** yazmak kasıtlı olarak engellenmiştir.
-- `dogrulandi`: metin fırınla kontrol edilince `true` yapın. (Şu an testler hepsinin `false` olmasını bekler; ilk doğrulamada `tests/veri.test.js` içindeki son testi silin.)
+- `glutenIcerir`: `true` (içerir) ya da `null` (emin değilsek). Her ürün sayfasında "glütensiz ürünümüz yoktur" çölyak notu bulunur; ürün metinlerinde **glütensiz** yazmak kasıtlı olarak engellenmiştir.
+- `dogrulandi`: **`false` iken ürünün "İçindekiler" ve "Beslenme notları" sitede yayınlanmaz** (yalnızca ad, açıklama, lezzet ve günler görünür). Bilgiyi fırınla kontrol edince `true` yapın.
+- Taslakları görmek için önizleme: `TASLAK=1 npm run build` → doğrulanmamış bilgiler "Taslak" etiketiyle görünür. **Bu çıktıyı yayınlamayın**; yayın için normal `npm run build` kullanılır.
+- Alan adını yanlış yazarsanız (`günler`, `gunlr` gibi) test ve derleme "bilinmeyen alan" hatası verir.
+- İçindekilerde buğday, çavdar, siyez, arpa ya da yulaf geçiyorsa `glutenIcerir: true` zorunludur.
 
 ### Hangi gün çıktığını değiştirmek
 - Her gün çıkan ürün: `gunler: 'hergun'` (varsayılan; yazmasanız da olur).
 - Belirli günler: `gunler: ['sali', 'cuma']`. Gün adları: `pazartesi, sali, carsamba, persembe, cuma, cumartesi`.
 Çizelge sayfası ve "Bugün fırında" kendiliğinden güncellenir.
+
+### Adres değiştirmek
+`firma.sokakAdresi`, `firma.ilce`, `firma.il` alanlarını düzeltin; sayfalar, harita ve Google'ın okuduğu işletme bilgisi birlikte güncellenir.
 
 ### Saatleri değiştirmek
 `saatler` içinde `acilis` / `kapanis` değerlerini `'07:30'` biçiminde yazın. Pazar `null` (kapalı) kalmalı.

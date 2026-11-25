@@ -1,5 +1,5 @@
 import { GUNLER } from './veri-dogrula.js';
-import { yolTarifiUrl } from './harita.js';
+import { yolTarifiUrl, tamAdres } from './harita.js';
 
 const INGILIZCE = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const kok = (site) => `https://${site.firma.alanAdi}`;
@@ -11,18 +11,18 @@ export function yapilandirilmisVeri(site) {
     '@context': 'https://schema.org',
     '@type': 'Bakery',
     name: f.ad,
-    description: `${f.slogan} Trabzon Ortahisar'da taş fırın. ${f.aciklama}`,
+    description: `${f.slogan} ${f.il} ${f.ilce}'da taş fırın. ${f.aciklama}`,
     foundingDate: String(f.kurulus),
     url: kok(site),
     telephone: telIntl(f.telefonlar[0]),
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Kemerkaya Mahallesi, Halkevi Sokak No: 22 B',
-      addressLocality: 'Ortahisar',
-      addressRegion: 'Trabzon',
+      streetAddress: f.sokakAdresi,
+      addressLocality: f.ilce,
+      addressRegion: f.il,
       addressCountry: 'TR',
     },
-    hasMap: yolTarifiUrl(f.adres),
+    hasMap: yolTarifiUrl(tamAdres(f)),
     servesCuisine: 'Karadeniz',
     sameAs: [f.instagram],
     openingHoursSpecification: GUNLER.map((g, i) => [g, i])

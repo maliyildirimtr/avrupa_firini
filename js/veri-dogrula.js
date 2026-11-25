@@ -3,6 +3,9 @@ export const GUNLER = ['pazartesi', 'sali', 'carsamba', 'persembe', 'cuma', 'cum
 const KATEGORILER = ['ekmek', 'kete', 'lezzet'];
 const ZORUNLU = ['id', 'ad', 'kategori', 'gunler', 'kisa', 'aciklama', 'icerik', 'lezzet', 'saglik', 'foto'];
 const YASAK = ['tedavi', 'iyileştir', 'şifa', 'hastalığa iyi', 'önler', 'glütensiz', 'glutensiz'];
+const IZINLI = new Set([...ZORUNLU, 'glutenIcerir', 'onecikan', 'dogrulandi']);
+// "karabuğday" glüten tahılı değildir; önünde harf olmayan buğday/çavdar/siyez/arpa/yulaf aranır.
+const GLUTEN_TAHILI = /(?<![a-zçğıöşü])(buğday|çavdar|siyez|arpa|yulaf)/;
 const SAAT = /^([01]\d|2[0-3]):[0-5]\d$/;
 
 const metinler = (u) =>
@@ -30,9 +33,18 @@ export function veriyiDogrula(site) {
       if (!Array.isArray(u.gunler) || u.gunler.length === 0) hatalar.push(`${ad}: gunler 'hergun' ya da gün dizisi olmalı`);
       else for (const g of u.gunler) if (!GUNLER.includes(g) || g === 'pazar') hatalar.push(`${ad}: geçersiz gün "${g}"`);
     }
+    for (const k of Object.keys(u)) if (!IZINLI.has(k)) hatalar.push(`${ad}: bilinmeyen alan "${k}" (yazım hatası olabilir)`);
+    if (Array.isArray(u.icerik) && u.glutenIcerir !== true
+      && u.icerik.some((x) => GLUTEN_TAHILI.test(String(x).toLocaleLowerCase('tr')))) {
+      hatalar.push(`${ad}: içerikte glüten tahılı var, glutenIcerir true olmalı`);
+    }
     if (u.glutenIcerir !== true && u.glutenIcerir !== null) hatalar.push(`${ad}: glüten bilgisi true ya da null olmalı`);
     const metin = metinler(u);
     for (const y of YASAK) if (metin.includes(y)) hatalar.push(`${ad}: yasak ifade "${y}"`);
+  }
+
+  for (const alan of ['ad', 'sokakAdresi', 'ilce', 'il']) {
+    if (!site.firma || !site.firma[alan]) hatalar.push(`firma: eksik alan "${alan}"`);
   }
 
   const s = site.saatler || {};

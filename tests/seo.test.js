@@ -10,6 +10,7 @@ test('işletme verisi Bakery', () => {
   assert.equal(v.foundingDate, '1977');
   assert.equal(v.url, 'https://avrupafirini.com');
   assert.equal(v.address.addressLocality, 'Ortahisar');
+  assert.equal(v.address.streetAddress, site.firma.sokakAdresi);
   assert.equal(v.address.addressRegion, 'Trabzon');
   assert.equal(v.address.addressCountry, 'TR');
   assert.ok(v.telephone.startsWith('+90'));
@@ -31,4 +32,10 @@ test('ürün verisi: marka var, fiyat yok', () => {
   assert.equal(v.brand.name, 'Avrupa Fırını');
   assert.equal(v.offers, undefined);
   assert.ok(v.image.startsWith('https://avrupafirini.com/img/'));
+});
+
+test('adres veri dosyasından gelir', () => {
+  const s = structuredClone(site);
+  s.firma.sokakAdresi = 'Yeni Mahalle, Deneme Sokak No: 1';
+  assert.equal(yapilandirilmisVeri(s).address.streetAddress, 'Yeni Mahalle, Deneme Sokak No: 1');
 });

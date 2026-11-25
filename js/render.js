@@ -8,6 +8,9 @@ export const GUN_ADLARI = {
 export const SAGLIK_NOTU =
   'Bu bilgiler genel bilgilendirme amaçlıdır. Sağlık durumunuza uygun beslenme için doktorunuza veya diyetisyeninize danışın.';
 
+export const COLYAK_NOTU =
+  'Fırınımızda buğday unu kullanılır ve tüm ürünler aynı taş fırında pişer; glütensiz ürünümüz yoktur. Çölyak hastalığınız varsa ürünlerimizi tüketmeden önce bizimle görüşün.';
+
 export const KATEGORI_SAYFASI = { ekmek: 'ekmeklerimiz.html', kete: 'keteler.html', lezzet: 'lezzetler.html' };
 
 const YER_TUTUCU = 'img/yer-tutucu.svg';
@@ -41,20 +44,24 @@ export function urunKarti(urun) {
 }
 
 function glutenSatiri(g) {
-  return g === true ? 'Glüten içerir.' : 'Glüten bilgisi için fırınımıza danışın.';
+  return g === true ? 'Glüten içerir.' : COLYAK_NOTU;
 }
 
-export function urunDetay(urun) {
+/** Doğrulanmamış ürünün içindekiler ve sağlık bilgisi yayınlanmaz; TASLAK=1 önizlemede etiketle görünür. */
+export function urunDetay(urun, { taslakGoster = false } = {}) {
+  const goster = urun.dogrulandi === true || taslakGoster;
+  const taslak = urun.dogrulandi !== true && taslakGoster ? '<p class="taslak">Taslak — fırınla doğrulanacak</p>' : '';
   const liste = (arr) => `<ul>${arr.map((x) => `<li>${kacis(x)}</li>`).join('')}</ul>`;
   const gunler = Array.isArray(urun.gunler) ? `Yalnızca ${gunMetni(urun.gunler)} günleri` : 'Her gün (Pazar hariç)';
-  const saglik = urun.saglik && urun.saglik.length
+  const saglik = goster && urun.saglik && urun.saglik.length
     ? `<div class="urun-detay__saglik"><h4>Beslenme notları</h4>${liste(urun.saglik)}<p class="saglik-notu">${SAGLIK_NOTU}</p></div>`
     : '';
-  const icerik = urun.icerik && urun.icerik.length ? `<h4>İçindekiler</h4>${liste(urun.icerik)}` : '';
+  const icerik = goster && urun.icerik && urun.icerik.length ? `<h4>İçindekiler</h4>${liste(urun.icerik)}` : '';
   return `<section class="urun-detay" id="${kacis(urun.id)}">
   ${gorsel(urun, 'urun-detay__img')}
   <div class="urun-detay__metin">
     <h3>${kacis(urun.ad)}</h3>
+    ${taslak}
     <p>${kacis(urun.aciklama)}</p>
     ${icerik}
     <p><strong>Lezzet:</strong> ${kacis(urun.lezzet)}</p>
@@ -68,15 +75,15 @@ export function urunDetay(urun) {
 export function bugunFirindaHTML(sonuc, site) {
   const { durum, gun, saatler } = sonuc;
   const mesajlar = {
-    acik: `Şu an açığız · ${saatler.kapanis}'ye kadar`,
-    acilacak: `Bugün ${saatler.acilis}'de açıyoruz`,
-    kapandi: `Bugün kapandık · ${GUN_ADLARI[gun]} ${saatler.acilis}'de görüşmek üzere`,
-    kapali: `Bugün (Pazar) kapalıyız · ${GUN_ADLARI[gun]} ${saatler.acilis}'de görüşmek üzere`,
+    acik: `Şu an açığız · Kapanış ${saatler.kapanis}`,
+    acilacak: `Henüz açılmadık · Açılış ${saatler.acilis}`,
+    kapandi: `Bugün kapandık · ${GUN_ADLARI[gun]} açılış ${saatler.acilis}`,
+    kapali: `Bugün (Pazar) kapalıyız · ${GUN_ADLARI[gun]} açılış ${saatler.acilis}`,
   };
   const baslik = durum === 'kapandi' || durum === 'kapali' ? `${GUN_ADLARI[gun]} fırında` : 'Bugün fırında';
   const isim = (u) => `<li><a href="${KATEGORI_SAYFASI[u.kategori] || ''}#${kacis(u.id)}">${kacis(u.ad)}</a></li>`;
   const ozel = sonuc.ozel.length
-    ? `<div class="bugun__ozel"><span class="bugun__etiket">Bugüne özel</span><ul>${sonuc.ozel.map(isim).join('')}</ul></div>`
+    ? `<div class="bugun__ozel"><span class="bugun__etiket">${durum === 'acik' || durum === 'acilacak' ? 'Bugüne özel' : `Yalnızca ${GUN_ADLARI[gun]}`}</span><ul>${sonuc.ozel.map(isim).join('')}</ul></div>`
     : '';
   const herGun = `<ul class="bugun__liste">${sonuc.herGun.map(isim).join('')}</ul>`;
   return `<div class="bugun bugun--${durum}">
@@ -144,7 +151,7 @@ export function altKisim(site) {
       <p class="alt__marka">${kacis(f.ad)}</p>
       <p>1977'den beri Trabzon'da taş fırında. ${kacis(f.aciklama)}</p>
     </div>
-    <div><h2>Adres</h2><address>${kacis(f.adres)}</address></div>
+    <div><h2>Adres</h2><address>${kacis(`${f.sokakAdresi}, ${f.ilce}/${f.il}`)}</address></div>
     <div><h2>Telefon</h2><p>${tel}</p></div>
     <div><h2>Instagram</h2><p><a href="${kacis(f.instagram)}" rel="noopener" target="_blank">@avrupafirini</a></p></div>
   </div>

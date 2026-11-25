@@ -71,6 +71,33 @@ test('açılış kapanıştan sonra olamaz', () => {
   hataIcerir(veriyiDogrula(s), 'sali');
 });
 
-test('gerçek veride her ürün doğrulanmadı olarak işaretli', () => {
-  for (const u of site.urunler) assert.equal(u.dogrulandi, false, u.id);
+
+test('içerikte buğday/çavdar/siyez/arpa/yulaf varsa glüten true olmalı', () => {
+  const s = kopya();
+  const u = s.urunler.find((x) => x.id === 'grecka');
+  u.glutenIcerir = null;
+  u.icerik = ['Karabuğday unu', 'Buğday unu'];
+  hataIcerir(veriyiDogrula(s), 'glüten');
+});
+
+test('karabuğday tek başına glüten tahılı sayılmaz', () => {
+  const s = kopya();
+  const u = s.urunler.find((x) => x.id === 'grecka');
+  u.glutenIcerir = null;
+  u.icerik = ['Karabuğday unu', 'Su'];
+  assert.ok(!veriyiDogrula(s).some((h) => h.startsWith('grecka') && h.includes('glüten')));
+});
+
+for (const anahtar of ['günler', 'gunlr', 'glutenİcerir']) {
+  test(`bilinmeyen alan adı yakalanır: ${anahtar}`, () => {
+    const s = kopya();
+    s.urunler[0][anahtar] = ['sali'];
+    hataIcerir(veriyiDogrula(s), 'bilinmeyen alan');
+  });
+}
+
+test('firma adres parçaları zorunlu', () => {
+  const s = kopya();
+  delete s.firma.il;
+  hataIcerir(veriyiDogrula(s), 'firma');
 });
