@@ -57,11 +57,11 @@ p { margin: 0 0 1em; max-width: 68ch; }
 
 /* Hero: taş fırın ağzı */
 .hero { background: var(--lacivert); color: var(--un); overflow: hidden; }
-.hero__ic { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: clamp(24px, 5vw, 64px); padding-top: clamp(40px, 7vw, 80px); }
+.hero__ic { display: grid; grid-template-columns: 1.05fr .95fr; align-items: end; gap: clamp(24px, 5vw, 64px); padding-top: clamp(40px, 7vw, 80px); }
 .hero h1 { color: var(--un); }
 .hero__metin { padding-bottom: clamp(40px, 7vw, 88px); }
 .hero__metin p { font-size: var(--t-2); color: #DCE3F0; max-width: 34ch; }
-.firin { margin: 0; align-self: end; }
+.firin { margin: 0 8px; align-self: end; }
 .firin-svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 -6px 30px rgba(224,116,42,.22)); }
 .firin-svg .alev { transform-box: fill-box; transform-origin: 50% 100%; animation: alev 1.1s ease-in-out infinite alternate; }
 .firin-svg .alev--ic { mix-blend-mode: screen; }
