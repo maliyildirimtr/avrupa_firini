@@ -13,3 +13,9 @@ export function ortakDuzeniKur() {
 }
 
 ortakDuzeniKur();
+
+// Hareket azaltma tercih edilmişse usta videosu durur, afiş görseli kalır.
+const ustaVideo = document.querySelector('.usta__video');
+if (ustaVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  ustaVideo.removeAttribute('autoplay'); ustaVideo.pause();
+}

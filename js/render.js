@@ -157,3 +157,29 @@ export function altKisim(site) {
   <p class="alt__telif">© ${f.kurulus}–<span data-yil></span> ${kacis(f.ad)}</p>
 </footer>`;
 }
+
+/** "Zeynep Usta'nın elinden" bölümü. dugme: { href, metin } ya da null. */
+export function ustaBolumu(dugme = null) {
+  const d = dugme ? `        <a class="dugme" href="${kacis(dugme.href)}">${kacis(dugme.metin)}</a>\n` : '';
+  const dugme_ = d;
+  return `  <section class="bolum usta" id="zeynep-usta">
+    <div class="kap usta__ic">
+      <div class="usta__gorsel">
+        <video class="usta__video" autoplay muted loop playsinline preload="metadata" poster="img/zeynep-usta.jpg" width="414" height="414" aria-label="Zeynep Usta taş fırının önünde hamur yoğuruyor">
+          <source src="img/zeynep-usta.webm" type="video/webm">
+          <source src="img/zeynep-usta.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="usta__metin">
+        <h2>Zeynep Usta’nın elinden</h2>
+        <p class="bolum__giris">Makineden değil, elden.</p>
+        <p>Ketelerimiz ve ev ürünlerimiz, Zeynep Usta’nın elleriyle yoğurduğu hamurdan, ev usulü hazırlanır. Her kat, her kıvrım el emeği; sonra taş fırında, her gün sıcak ve taze.</p>
+        <ul class="usta__liste">
+          <li>Elde yoğrulan ev usulü hamur</li>
+          <li>Taş fırında pişirme</li>
+          <li>Her gün sıcak ve taze</li>
+        </ul>
+${dugme_}      </div>
+    </div>
+  </section>`;
+}

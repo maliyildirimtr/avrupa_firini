@@ -78,3 +78,10 @@ test('Zeynep Usta bölümü: sessiz, döngülü, satır içi video ve afiş gör
   assert.ok(h.includes('<source src="img/zeynep-usta.mp4" type="video/mp4">'));
   assert.ok(existsSync(join(hedef, 'img/zeynep-usta.mp4')));
 });
+
+test('keteler sayfasında da Zeynep Usta videosu var, ketelere giden düğme yok', () => {
+  const h = oku('keteler.html');
+  assert.match(h, /<video[^>]+class="usta__video"/);
+  assert.ok(!h.includes('Ketelerimizi görün'));
+  assert.ok(oku('index.html').includes('Ketelerimizi görün'));
+});

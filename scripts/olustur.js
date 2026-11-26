@@ -4,7 +4,7 @@ import { readFileSync, writeFileSync, mkdirSync, cpSync, readdirSync, rmSync, ex
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import {
-  urunKarti, urunDetay, cizelgeTablosu, saatlerListesi, ustKisim, altKisim, kacis, SAGLIK_NOTU, COLYAK_NOTU,
+  urunKarti, urunDetay, cizelgeTablosu, saatlerListesi, ustKisim, altKisim, kacis, SAGLIK_NOTU, COLYAK_NOTU, ustaBolumu,
 } from '../js/render.js';
 import { haritaEmbedUrl, yolTarifiUrl, telLink, tamAdres } from '../js/harita.js';
 import { veriyiDogrula } from '../js/veri-dogrula.js';
@@ -61,6 +61,8 @@ export function parcalar(site, sayfa, secenek = {}) {
     isletmeVerisi: jsonld(yapilandirilmisVeri(site)),
     yil: String(new Date().getFullYear()),
     basOrtak: BAS_ORTAK,
+    ustaBolumu: ustaBolumu({ href: 'keteler.html', metin: 'Ketelerimizi görün' }),
+    ustaBolumuSade: ustaBolumu(null),
     tabanYol: kacis(secenek.tabanYol || '/'),
   };
   for (const k of ['ekmek', 'kete', 'lezzet']) {
