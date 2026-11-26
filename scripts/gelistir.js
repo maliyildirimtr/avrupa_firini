@@ -11,7 +11,7 @@ const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
 const hedef = join(kok, 'dist');
 const PORT = Number(process.env.PORT) || 3000;
 const TUR = { '.html': 'text/html; charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml',
-  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.xml': 'application/xml', '.txt': 'text/plain' };
+  '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.xml': 'application/xml', '.txt': 'text/plain', '.mp4': 'video/mp4', '.webm': 'video/webm' };
 const YENILE = `<script>new EventSource('/__yenile').onmessage=()=>location.reload()</script>`;
 const dinleyiciler = new Set();
 
