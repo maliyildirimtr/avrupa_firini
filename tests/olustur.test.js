@@ -34,3 +34,8 @@ test('alt kısım telefon, adres, instagram', () => {
   assert.ok(h.includes('instagram.com/avrupafirini'));
   assert.ok(h.includes("1977'den beri"));
 });
+
+test('404 sayfası için taban yol varsayılanı / ve ayarlanabilir', () => {
+  assert.equal(parcalar(site, '404.html').tabanYol, '/');
+  assert.equal(parcalar(site, '404.html', { tabanYol: '/avrupa_firini/' }).tabanYol, '/avrupa_firini/');
+});

@@ -67,6 +67,10 @@ Siteye yalnızca genel ve doğru bilgiler yazılır: "lifi yüksektir", "omega-3
 
 > Not: Akış hizmetleri yalnızca **gönderileri** gösterir, hikâyeleri değil. Hesaptaki son gönderi 2023 tarihliyse sitede eski fotoğraflar görünür; akışı açmadan önce düzenli gönderi paylaşılmaya başlanmalı.
 
+## Geçici yayın: GitHub Pages
+
+`main` dalına her gönderimde `.github/workflows/pages.yml` testleri çalıştırır, siteyi derler ve **https://maliyildirimtr.github.io/avrupa_firini/** adresinde yayınlar. Testler geçmezse site güncellenmez. İlk kez açmak için: GitHub'da repo → **Settings → Pages → Source: GitHub Actions**.
+
 ## Yayına alma (Cloudflare Pages, ücretsiz)
 
 1. Bu klasörü GitHub'a bir depo olarak yükleyin.

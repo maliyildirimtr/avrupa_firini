@@ -56,6 +56,7 @@ export function parcalar(site, sayfa, secenek = {}) {
     isletmeVerisi: jsonld(yapilandirilmisVeri(site)),
     yil: String(new Date().getFullYear()),
     basOrtak: BAS_ORTAK,
+    tabanYol: kacis(secenek.tabanYol || '/'),
   };
   for (const k of ['ekmek', 'kete', 'lezzet']) {
     const liste = site.urunler.filter((u) => u.kategori === k);
@@ -85,6 +86,7 @@ export async function olustur(kok, hedef, secenek = {}) {
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const kok = join(dirname(fileURLToPath(import.meta.url)), '..');
   const taslakGoster = process.env.TASLAK === '1';
-  const sayfalar = await olustur(kok, join(kok, 'dist'), { taslakGoster });
+  const tabanYol = process.env.TABAN_YOL || '/';
+  const sayfalar = await olustur(kok, join(kok, 'dist'), { taslakGoster, tabanYol });
   console.log(`dist/ hazır: ${sayfalar.join(', ')}${taslakGoster ? ' (TASLAK ÖNİZLEME — yayınlamayın)' : ''}`);
 }
