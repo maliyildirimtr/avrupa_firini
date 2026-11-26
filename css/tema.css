@@ -1,8 +1,8 @@
-/* Renkler img/logo.jpg'den alınmıştır: turuncu #F45304, logo laciverti #001377. */
+/* Turuncu, orijinal logodaki referans renktir. Lacivert tonları bilinçli olarak sitenin kendi tonudur. */
 :root {
   --lacivert: #1F3A6E;
   --lacivert-koyu: #142749;
-  --turuncu: #F45304; /* logodaki turuncu (logo dosyasından ölçüldü) */
+  --turuncu: #F45304; /* referans: orijinal logo turuncusu */
   --turuncu-acik: #FDDCCA;
   --kabuk: #8B5A2B;
   --krem: #FBF5EA;

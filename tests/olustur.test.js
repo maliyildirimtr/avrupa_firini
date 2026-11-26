@@ -44,3 +44,13 @@ test('üst kısımda logo amblemi, sayfalarda png site simgesi', () => {
   assert.match(ustKisim(site, 'index.html'), /<img[^>]+src="img\/amblem\.png"[^>]+alt=""/);
   assert.ok(parcalar(site, 'index.html').basOrtak.includes('href="img/favicon.png"'));
 });
+
+test('alt kısımda açık renk yatay logo', () => {
+  assert.match(altKisim(site), /<img[^>]+src="img\/logo-yatay-acik\.png"[^>]+alt="Avrupa Unlu Gıda Mamülleri – Damaklarda Kalan Tat"/);
+});
+
+test('paylaşım görseli ve telefon simgesi her sayfada', () => {
+  const b = parcalar(site, 'index.html').basOrtak;
+  assert.ok(b.includes('<meta property="og:image" content="https://avrupafirini.com/img/paylasim.jpg">'));
+  assert.ok(b.includes('<link rel="apple-touch-icon" href="img/apple-touch-icon.png">'));
+});

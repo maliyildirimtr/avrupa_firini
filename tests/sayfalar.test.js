@@ -64,3 +64,7 @@ test('arama motoru dosyaları: robots, sitemap (6 sayfa), 404', () => {
   assert.ok(existsSync(join(hedef, '404.html')));
   assert.ok(!oku('404.html').includes('{{'));
 });
+
+test('ana sayfada rozet logo', () => {
+  assert.match(oku('index.html'), /<img[^>]+src="img\/logo-rozet\.jpg"/);
+});

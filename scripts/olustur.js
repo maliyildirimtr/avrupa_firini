@@ -24,7 +24,11 @@ const BAS_ORTAK = `<meta charset="utf-8">
 <meta property="og:site_name" content="Avrupa Fırını">
 <meta name="theme-color" content="#1F3A6E">
 <link rel="icon" href="img/favicon.png" type="image/png">
-<link rel="apple-touch-icon" href="img/amblem.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<meta property="og:image" content="https://avrupafirini.com/img/paylasim.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">

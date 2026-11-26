@@ -134,7 +134,7 @@ export function ustKisim(site, aktif) {
     `<li><a href="${href}"${href === aktif ? ' aria-current="page"' : ''}>${ad}</a></li>`).join('');
   return `<header class="ust">
   <a class="marka" href="index.html" aria-label="${kacis(site.firma.ad)} ana sayfa">
-    <img class="marka__amblem" src="img/amblem.png" alt="" width="40" height="44">
+    <img class="marka__amblem" src="img/amblem.png" alt="" width="24" height="44">
     <span class="marka__metin"><span class="marka__ad">${kacis(site.firma.ad)}</span>
     <span class="marka__yil">1977'den beri</span></span>
   </a>
@@ -149,7 +149,7 @@ export function altKisim(site) {
   return `<footer class="alt">
   <div class="alt__ic">
     <div>
-      <p class="alt__marka">${kacis(f.ad)}</p>
+      <img class="alt__logo" src="img/logo-yatay-acik.png" alt="Avrupa Unlu Gıda Mamülleri – Damaklarda Kalan Tat" width="380" height="129" loading="lazy">
       <p>1977'den beri Trabzon'da taş fırında. ${kacis(f.aciklama)}</p>
     </div>
     <div><h2>Adres</h2><address>${kacis(`${f.sokakAdresi}, ${f.ilce}/${f.il}`)}</address></div>
