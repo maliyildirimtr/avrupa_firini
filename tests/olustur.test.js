@@ -41,7 +41,7 @@ test('404 sayfası için taban yol varsayılanı / ve ayarlanabilir', () => {
 });
 
 test('üst kısımda logo amblemi, sayfalarda png site simgesi', () => {
-  assert.match(ustKisim(site, 'index.html'), /<img[^>]+src="img\/amblem\.png"[^>]+alt=""/);
+  assert.match(ustKisim(site, 'index.html'), /<img[^>]+src="img\/logo-yatay-acik\.png"[^>]+alt="Avrupa Fırını – 1977'den beri"/);
   assert.ok(parcalar(site, 'index.html').basOrtak.includes('href="img/favicon.png"'));
 });
 

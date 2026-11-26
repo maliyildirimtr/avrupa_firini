@@ -134,9 +134,7 @@ export function ustKisim(site, aktif) {
     `<li><a href="${href}"${href === aktif ? ' aria-current="page"' : ''}>${ad}</a></li>`).join('');
   return `<header class="ust">
   <a class="marka" href="index.html" aria-label="${kacis(site.firma.ad)} ana sayfa">
-    <img class="marka__amblem" src="img/amblem.png" alt="" width="24" height="44">
-    <span class="marka__metin"><span class="marka__ad">${kacis(site.firma.ad)}</span>
-    <span class="marka__yil">1977'den beri</span></span>
+    <img class="marka__logo" src="img/logo-yatay-acik.png" alt="Avrupa Fırını – 1977'den beri" width="760" height="257">
   </a>
   <button class="menu-dugme" type="button" aria-expanded="false" aria-controls="ana-menu">Menü</button>
   <nav id="ana-menu" class="ana-menu" aria-label="Ana menü"><ul>${linkler}</ul></nav>

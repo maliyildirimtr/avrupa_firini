@@ -23,10 +23,11 @@ p { margin: 0 0 1em; max-width: 68ch; }
 /* Üst kısım */
 .ust {
   position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 12px var(--kenar); background: var(--lacivert-koyu); border-bottom: 3px solid var(--turuncu); color: var(--un);
+  padding: 8px var(--kenar); background: var(--lacivert-koyu); border-bottom: 3px solid var(--turuncu); color: var(--un);
 }
 .marka { display: flex; align-items: center; gap: 10px; color: var(--un); text-decoration: none; line-height: 1.05; }
-.marka__amblem { width: auto; height: 44px; flex: none; }
+.marka__logo { display: block; height: 68px; width: auto; }
+@media (max-width: 520px) { .marka__logo { height: 52px; } }
 .marka__metin { display: flex; flex-direction: column; }
 .marka__ad { font-family: var(--yazi-baslik); font-weight: 800; font-size: 1.45rem; letter-spacing: .01em; }
 .marka__yil { font-size: var(--t-0); color: var(--turuncu); }
