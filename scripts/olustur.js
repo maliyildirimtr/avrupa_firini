@@ -23,7 +23,8 @@ const BAS_ORTAK = `<meta charset="utf-8">
 <meta property="og:locale" content="tr_TR">
 <meta property="og:site_name" content="Avrupa Fırını">
 <meta name="theme-color" content="#1F3A6E">
-<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="img/amblem.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">

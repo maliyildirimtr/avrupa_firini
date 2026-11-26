@@ -39,3 +39,8 @@ test('404 sayfası için taban yol varsayılanı / ve ayarlanabilir', () => {
   assert.equal(parcalar(site, '404.html').tabanYol, '/');
   assert.equal(parcalar(site, '404.html', { tabanYol: '/avrupa_firini/' }).tabanYol, '/avrupa_firini/');
 });
+
+test('üst kısımda logo amblemi, sayfalarda png site simgesi', () => {
+  assert.match(ustKisim(site, 'index.html'), /<img[^>]+src="img\/amblem\.png"[^>]+alt=""/);
+  assert.ok(parcalar(site, 'index.html').basOrtak.includes('href="img/favicon.png"'));
+});

@@ -1,9 +1,9 @@
-/* Renkler logodan türetilmiştir. Orijinal logo gelince yalnızca bu dosyayı güncelleyin. */
+/* Renkler img/logo.jpg'den alınmıştır: turuncu #F45304, logo laciverti #001377. */
 :root {
   --lacivert: #1F3A6E;
   --lacivert-koyu: #142749;
-  --turuncu: #D6774D; /* logodaki başak turuncusu */
-  --turuncu-acik: #F7DED0;
+  --turuncu: #F45304; /* logodaki turuncu (logo dosyasından ölçüldü) */
+  --turuncu-acik: #FDDCCA;
   --kabuk: #8B5A2B;
   --krem: #FBF5EA;
   --un: #FFFDF8;
