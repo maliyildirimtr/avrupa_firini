@@ -47,7 +47,6 @@ export const site = {
     // ——— EKMEKLER ———
     urun({
       id: 'hamsili-ekmek', ad: 'Hamsili Ekmek', kategori: 'ekmek', onecikan: true,
-      gunler: ['sali', 'cuma'], // ÖRNEK — gerçek günler gelince düzeltin
       kisa: 'Karadeniz’in vazgeçilmezi: hamsili, sebzeli mısır ekmeği.',
       aciklama: 'Mısır unu, taze hamsi ve yeşilliklerle hazırlanan, Karadeniz mutfağının en sevilen lezzetlerinden. Taş fırında pişerek kenarları çıtır, içi yumuşak olur.',
       icerik: ['Mısır unu', 'Hamsi', 'Mevsim yeşillikleri', 'Soğan'],
@@ -57,7 +56,7 @@ export const site = {
     }),
     urun({
       id: 'tam-bugday', ad: 'Tam Buğday Ekmeği', kategori: 'ekmek',
-      kisa: 'Kepeğiyle birlikte öğütülmüş tam buğday unundan.',
+      kisa: 'Katkısız, tam buğday unundan.',
       aciklama: 'Buğday tanesinin kepeği ve özüyle birlikte öğütüldüğü tam buğday unundan yapılır. Taş fırında yavaşça pişer.',
       icerik: ['Tam buğday unu', 'Su', 'Tuz', 'Maya'],
       lezzet: 'Hafif kepekli, tok ve aromalı.',
@@ -76,7 +75,7 @@ export const site = {
     urun({
       id: 'misir', ad: 'Mısır Ekmeği', kategori: 'ekmek',
       kisa: 'Karadeniz usulü, sarı mısır unundan.',
-      aciklama: 'Karadeniz sofralarının klasiği; mısır unuyla taş fırında pişirilir.',
+      aciklama: 'Karadeniz sofralarının klasiği; doğal, yerli mısır unuyla taş fırında pişirilir.',
       icerik: ['Mısır unu', 'Su', 'Tuz'],
       lezzet: 'Hafif tatlımsı, kendine has mısır aromalı.',
       saglik: [],
@@ -84,9 +83,9 @@ export const site = {
     }),
     urun({
       id: 'gumushane', ad: 'Gümüşhane Ekmeği', kategori: 'ekmek', onecikan: true,
-      kisa: 'Yöresel tarifle, iri ve kalın kabuklu.',
-      aciklama: 'Gümüşhane yöresinin geleneksel ekmeği. İri, kalın kabuklu ve uzun süre taze kalan bir köy ekmeğidir.',
-      icerik: ['Buğday unu', 'Su', 'Tuz', 'Maya'],
+      kisa: 'Ekşi mayalı köy ekmeği.',
+      aciklama: 'Gümüşhane usulü, ekşi mayayla hazırlanan iri ve kalın kabuklu köy ekmeği. Uzun süre taze kalır.',
+      icerik: ['Buğday unu', 'Ekşi maya', 'Su', 'Tuz'],
       lezzet: 'Çıtır kabuklu, içi yumuşak ve aromalı.',
       saglik: [],
       glutenIcerir: true,
@@ -101,8 +100,8 @@ export const site = {
       glutenIcerir: true,
     }),
     urun({
-      id: 'tahilli', ad: 'Tahıllı Ekmek', kategori: 'ekmek',
-      kisa: 'Çeşitli tahıl ve tohumlarla zenginleştirilmiş.',
+      id: 'tahilli', ad: 'Çok Tahıllı Ekmek', kategori: 'ekmek',
+      kisa: 'Tahıl ve tohumlarla bezenmiş tam tahıllı ekmek.',
       aciklama: 'Farklı tahıl ve tohumların bir araya geldiği, dokulu bir ekmek.',
       icerik: ['Buğday unu', 'Tahıl ve tohum karışımı', 'Su', 'Tuz', 'Maya'],
       lezzet: 'Çıtır tohumlu, zengin aromalı.',
@@ -111,13 +110,29 @@ export const site = {
     }),
     urun({
       id: 'grecka', ad: 'Greçka Ekmeği', kategori: 'ekmek',
-      gunler: ['sali', 'cuma'], // ÖRNEK — gerçek günler gelince düzeltin
       kisa: 'Karabuğday (greçka) unuyla.',
       aciklama: 'Karabuğday, yani greçka unuyla hazırlanan, kendine özgü renkte ve tatta bir ekmek.',
       icerik: ['Karabuğday (greçka) unu', 'Buğday unu', 'Su', 'Tuz', 'Maya'],
       lezzet: 'Topraksı, hafif fındıksı bir aroma.',
       saglik: ['Karabuğday lif bakımından zengindir.'],
       glutenIcerir: true, // buğday unu da içerir
+    }),
+    urun({
+      id: 'karakilcik', ad: 'Karakılçık Buğday Ekmeği', kategori: 'ekmek', onecikan: true,
+      gunler: ['sali'], // Instagram: "Salı gününe özel"
+      kisa: 'Salı gününe özel, karakılçık buğdayından.',
+      aciklama: 'Anadolu’nun yerel buğday çeşitlerinden karakılçıkla hazırlanan, haftada yalnızca salı günü çıkan ekmeğimiz.',
+      icerik: ['Karakılçık buğday unu'],
+      lezzet: 'Koyu renkli, aromalı ve tok.',
+      glutenIcerir: true,
+    }),
+    urun({
+      id: 'kabakli-misir', ad: 'Kabaklı Mısır Ekmeği', kategori: 'ekmek',
+      kisa: 'Kabakla hazırlanan mısır ekmeği.',
+      aciklama: 'Mısır unu ve kabakla hazırlanan, taş fırında pişen yöresel mısır ekmeği.',
+      icerik: ['Mısır unu', 'Kabak'],
+      lezzet: 'Hafif tatlımsı, nemli ve yumuşak.',
+      glutenIcerir: null,
     }),
 
     // ——— KETELER ———
@@ -138,20 +153,36 @@ export const site = {
       glutenIcerir: true,
     }),
     urun({
-      id: 'kete-sade', ad: 'Sade Kete', kategori: 'kete',
-      kisa: 'Çayın yanına klasik kete.',
-      aciklama: 'Yağlı, kat kat açılan klasik kete. Çayın en iyi arkadaşı.',
+      id: 'kete-tahinli', ad: 'Tahinli Kete', kategori: 'kete', onecikan: true,
+      kisa: 'Tahinli, susamlı ev ketesi.',
+      aciklama: 'Ev usulü açılan hamura tahin sürülüp sarılır, üzerine susam serpilerek taş fırında pişirilir.',
+      icerik: ['Buğday unu', 'Tahin', 'Susam'],
+      lezzet: 'Tahin aromalı, hafif tatlı, kat kat.',
+      glutenIcerir: true,
+    }),
+    urun({
+      id: 'kete-cevizli', ad: 'Cevizli / Fındıklı Kete', kategori: 'kete',
+      kisa: 'Ceviz ya da fındıkla, ev yapımı.',
+      aciklama: 'Ev usulü hamur, ceviz ya da Karadeniz fındığıyla zenginleştirilerek taş fırında pişirilir.',
+      icerik: ['Buğday unu', 'Ceviz veya fındık'],
+      lezzet: 'Kıtır, kuruyemiş aromalı.',
+      glutenIcerir: true,
+    }),
+    urun({
+      id: 'kete-tereyagli', ad: 'Tereyağlı Unlu Kete', kategori: 'kete',
+      kisa: 'Klasik Karadeniz ketesi.',
+      aciklama: 'Tereyağı ve unla hazırlanan iç harcıyla, kat kat açılan klasik Karadeniz ketesi.',
       icerik: ['Buğday unu', 'Tereyağı'],
-      lezzet: 'Yumuşak, yağlı, hafif tuzlu.',
+      lezzet: 'Yumuşak, tereyağı kokulu, hafif tuzlu.',
       glutenIcerir: true,
     }),
 
     // ——— KURABİYE & DİĞER LEZZETLER ———
     urun({
       id: 'meyveli-kurabiye', ad: 'Meyveli Kurabiye', kategori: 'lezzet',
-      kisa: 'Meyve parçacıklı, el yapımı kurabiye.',
-      aciklama: 'Meyve parçacıklarıyla hazırlanan el yapımı kurabiyeler.',
-      icerik: ['Buğday unu', 'Meyve', 'Şeker', 'Tereyağı'],
+      kisa: 'Yoğurtlu, üzümlü ve fındıklı ev kurabiyesi.',
+      aciklama: 'Yoğurtlu hamuruna üzüm ve fındık katılarak hazırlanan, ev usulü meyveli kurabiye.',
+      icerik: ['Buğday unu', 'Yoğurt', 'Üzüm', 'Fındık'],
       lezzet: 'Tatlı, meyveli, ağızda dağılan.',
       glutenIcerir: true,
     }),
@@ -165,16 +196,16 @@ export const site = {
     }),
     urun({
       id: 'beypazari-urunleri', ad: 'Beypazarı Ürünleri', kategori: 'lezzet',
-      kisa: 'Beypazarı kurusu ve yöresel lezzetler.',
-      aciklama: 'Beypazarı’nın meşhur yöresel ürünleri fırınımızda.',
+      kisa: 'Ev yapımı erişte, makarna ve kuru çeşitleri.',
+      aciklama: 'Beypazarı’nın ev yapımı erişte, makarna ve kurularından seçtiğimiz paketli ürünler.',
       icerik: [],
-      lezzet: 'Çıtır, çayla birlikte.',
+      lezzet: 'Ev yapımı tadında.',
       glutenIcerir: null,
     }),
     urun({
       id: 'peksimet', ad: 'Peksimet', kategori: 'lezzet',
-      kisa: 'İki kez pişirilmiş, çıtır peksimet.',
-      aciklama: 'Fırında iki kez pişirilerek kurutulan, uzun süre saklanabilen çıtır ekmek.',
+      kisa: 'Tuzsuz, iki kez pişirilmiş peksimet.',
+      aciklama: 'Fırında iki kez pişirilerek kurutulan, tuz eklenmeden hazırlanan, uzun süre saklanabilen çıtır ekmek.',
       icerik: ['Buğday unu'],
       lezzet: 'Çıtır, hafif.',
       glutenIcerir: true,
@@ -201,11 +232,10 @@ export const site = {
   // Yayın öncesi tamamlanacaklar (README'de de listelidir; sitede görünmez).
   eksikler: [
     'Gerçek çalışma saatleri (hafta içi ve cumartesi)',
-    'Hangi ürünün hangi günler çıktığı (hamsili ekmek ve greçka için yazılan salı/cuma örnektir)',
+    'Hangi ürünün hangi günler çıktığı (şimdilik yalnızca karakılçık salı olarak işli; diğerleri her gün)',
     'WhatsApp numarası',
-    'Logonun orijinal dosyası (img/logo.png) ve kesin renk kodları',
-    'Ürün fotoğrafları (img/urunler/<id>.jpg)',
+    'Eksik ürün fotoğrafları: kurutulmuş çavdar, pazılı börek, cevizli ve tereyağlı kete',
     'Her ürünün içerik ve sağlık bilgisinin fırından doğrulanması',
-    'Kete çeşitlerinin tam listesi',
+    'Köy, yulaf ve arpa ekmeği hâlâ yapılıyor mu? (logoda geçiyor)',
   ],
 };
