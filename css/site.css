@@ -23,7 +23,7 @@ p { margin: 0 0 1em; max-width: 68ch; }
 /* Üst kısım */
 .ust {
   position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 16px;
-  padding: 12px var(--kenar); background: var(--lacivert); color: var(--un);
+  padding: 12px var(--kenar); background: var(--lacivert-koyu); border-bottom: 3px solid var(--bugday); color: var(--un);
 }
 .marka { display: flex; flex-direction: column; color: var(--un); text-decoration: none; line-height: 1.05; }
 .marka__ad { font-family: var(--yazi-baslik); font-weight: 800; font-size: 1.45rem; letter-spacing: .01em; }
@@ -35,7 +35,8 @@ p { margin: 0 0 1em; max-width: 68ch; }
 .menu-dugme { display: none; font: inherit; font-weight: 600; color: var(--lacivert-koyu); background: var(--bugday); border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
 @media (max-width: 860px) {
   .menu-dugme { display: block; }
-  .ana-menu { position: absolute; left: 0; right: 0; top: 100%; background: var(--lacivert); padding: 8px var(--kenar) 16px; display: none; }
+  .ana-menu { position: absolute; left: 0; right: 0; top: 100%; background: var(--lacivert-koyu); padding: 4px var(--kenar) 12px; display: none; border-bottom: 3px solid var(--bugday); box-shadow: 0 18px 30px rgba(10, 20, 40, .45); }
+  .ana-menu li + li { border-top: 1px solid rgba(255,255,255,.1); }
   .ana-menu.acik { display: block; }
   .ana-menu ul { flex-direction: column; }
   .ana-menu a { display: block; padding: 12px; }
