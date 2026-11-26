@@ -234,7 +234,7 @@ export const site = {
     'Gerçek çalışma saatleri (hafta içi ve cumartesi)',
     'Hangi ürünün hangi günler çıktığı (şimdilik yalnızca karakılçık salı olarak işli; diğerleri her gün)',
     'WhatsApp numarası',
-    'Eksik ürün fotoğrafları: kurutulmuş çavdar, pazılı börek, cevizli ve tereyağlı kete',
+    'Eksik ürün fotoğrafları: kurutulmuş çavdar, pazılı börek',
     'Her ürünün içerik ve sağlık bilgisinin fırından doğrulanması',
     'Köy, yulaf ve arpa ekmeği hâlâ yapılıyor mu? (logoda geçiyor)',
   ],

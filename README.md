@@ -95,7 +95,7 @@ Yayından sonra yapılması gerekenler (en etkiliden başlayarak):
 - Gerçek çalışma saatleri (hafta içi ve cumartesi)
 - Hangi ürünün hangi günler çıktığı (şimdilik yalnızca karakılçık salı olarak işli; diğerleri her gün)
 - WhatsApp numarası (`firma.whatsapp`)
-- Eksik ürün fotoğrafları: kurutulmuş çavdar, pazılı börek, cevizli ve tereyağlı kete (`img/urunler/<id>.jpg`)
+- Eksik ürün fotoğrafları: kurutulmuş çavdar, pazılı börek (`img/urunler/<id>.jpg`)
 - Her ürünün içerik ve sağlık bilgisinin fırından doğrulanması
 - Köy, yulaf ve arpa ekmeği hâlâ yapılıyor mu? (logoda geçiyor)
 
