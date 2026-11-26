@@ -68,3 +68,13 @@ test('arama motoru dosyaları: robots, sitemap (6 sayfa), 404', () => {
 test('ana sayfada rozet logo', () => {
   assert.match(oku('index.html'), /<img[^>]+src="img\/logo-rozet\.jpg"/);
 });
+
+test('Zeynep Usta bölümü: sessiz, döngülü, satır içi video ve afiş görseli', () => {
+  const h = oku('index.html');
+  assert.match(h, /<video[^>]+class="usta__video"[^>]*>/);
+  const v = h.match(/<video[^>]+class="usta__video"[^>]*>/)[0];
+  for (const oz of ['autoplay', 'muted', 'loop', 'playsinline', 'poster="img/zeynep-usta.jpg"']) assert.ok(v.includes(oz), oz);
+  assert.ok(h.includes('<source src="img/zeynep-usta.webm" type="video/webm">'));
+  assert.ok(h.includes('<source src="img/zeynep-usta.mp4" type="video/mp4">'));
+  assert.ok(existsSync(join(hedef, 'img/zeynep-usta.mp4')));
+});
