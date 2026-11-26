@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "test": "node --test \"tests/*.test.js\"",
-    "build": "node scripts/olustur.js"
+    "build": "node scripts/olustur.js",
+    "dev": "node scripts/gelistir.js"
   }
 }

@@ -20,6 +20,7 @@ Trabzon Ortahisar'daki Avrupa Fırını'nın (1977'den beri) sitesi. Statik bir 
 Node.js 18 veya üstü gerekir; başka bir şey kurmanıza gerek yok.
 
 ```bash
+npm run dev       # canlı önizleme: http://localhost:3000 — kaydettikçe sayfa kendiliğinden yenilenir
 npm test          # veriyi ve kodu kontrol eder — her değişiklikten sonra çalıştırın
 npm run build     # dist/ klasörünü üretir
 npx serve dist    # http://localhost:3000 adresinde önizleme
@@ -54,7 +55,7 @@ Hepsi `data/site.js` içinde yapılır. Bitince `npm test`, sonra yayınlayın.
 `saatler` içinde `acilis` / `kapanis` değerlerini `'07:30'` biçiminde yazın. Pazar `null` (kapalı) kalmalı.
 
 ### Fotoğraf koymak
-Fotoğrafı `img/urunler/<ürün-id>.jpg` adıyla kaydedin (ör. `img/urunler/siyez.jpg`). Yatay, yaklaşık 1200×1000 piksel, 300 KB altı olsun. Ana sayfadaki fırın kemerinde görünmesini istediğiniz fotoğrafı `img/hero.jpg` olarak koyun. Fotoğraf yoksa site "Fotoğraf yakında" gösterir.
+Fotoğrafı `img/urunler/<ürün-id>.jpg` adıyla kaydedin (ör. `img/urunler/siyez.jpg`). Yatay, yaklaşık 1200×1000 piksel, 300 KB altı olsun. Fotoğraf yoksa site "Fotoğraf yakında" gösterir.
 
 ### Sağlık bilgisi yazarken
 Siteye yalnızca genel ve doğru bilgiler yazılır: "lifi yüksektir", "omega-3 bakımından zengindir" gibi. "Tedavi eder", "iyileştirir", "şifa", "hastalığa iyi gelir", "önler", "glütensiz" ifadeleri **testte hata verir** — hem yasal risk hem de yanlış yönlendirme olmaması için. Sağlık bilgisinin yanına doktor/diyetisyen notu otomatik eklenir.
@@ -95,6 +96,6 @@ Yayından sonra yapılması gerekenler (en etkiliden başlayarak):
 - Hangi ürünün hangi günler çıktığı (hamsili ekmek ve greçka için yazılan salı/cuma örnektir)
 - WhatsApp numarası (`firma.whatsapp`)
 - Logonun orijinal dosyası ve kesin renk kodları (`css/tema.css`)
-- Ürün fotoğrafları (`img/urunler/<id>.jpg`) ve `img/hero.jpg`
+- Ürün fotoğrafları (`img/urunler/<id>.jpg`)
 - Her ürünün içerik ve sağlık bilgisinin fırından doğrulanması
 - Kete çeşitlerinin tam listesi
