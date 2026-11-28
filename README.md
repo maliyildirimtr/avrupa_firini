@@ -57,6 +57,14 @@ Hepsi `data/site.js` içinde yapılır. Bitince `npm test`, sonra yayınlayın.
 ### Fotoğraf koymak
 Fotoğrafı `img/urunler/<ürün-id>.jpg` adıyla kaydedin (ör. `img/urunler/siyez.jpg`). Yatay, yaklaşık 1200×1000 piksel, 300 KB altı olsun. Fotoğraf yoksa site "Fotoğraf yakında" gösterir.
 
+### Fotoğraf albümü (ek fotoğraflar)
+Ek fotoğrafları `img/urunler/album/` klasörüne koyun ve ürüne ekleyin:
+`fotolar: ['img/urunler/album/peksimet-2.jpg', ...]`. Ürün detayında küçük bir galeri olarak görünür; dosya yoksa test hata verir.
+
+### Fiyatları değiştirmek
+`data/site.js` → `fiyatListesi`. Fiyatı bilinmeyen kalemde `fiyat: null` (boş görünür). Tarihi `guncelleme` alanında güncelleyin.
+Site, afiş ve broşür aynı listeden üretilir. PDF'ler için: `npm run build`, ardından `npx serve dist` ile `dist/baski/afis-a3.html` ve `dist/baski/brosur-a4.html` sayfalarını tarayıcıda açıp **Yazdır → PDF olarak kaydet** (kenar boşluğu: yok, arka plan grafikleri: açık).
+
 ### Sağlık bilgisi yazarken
 Siteye yalnızca genel ve doğru bilgiler yazılır: "lifi yüksektir", "omega-3 bakımından zengindir" gibi. "Tedavi eder", "iyileştirir", "şifa", "hastalığa iyi gelir", "önler", "glütensiz" ifadeleri **testte hata verir** — hem yasal risk hem de yanlış yönlendirme olmaması için. Sağlık bilgisinin yanına doktor/diyetisyen notu otomatik eklenir.
 

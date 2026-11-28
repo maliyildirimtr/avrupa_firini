@@ -106,3 +106,10 @@ test('saatler listesi', () => {
   assert.ok(h.includes('07:00–17:00'));
   assert.ok(h.includes('Kapalı'));
 });
+
+test('ürün albümü: ek fotoğraflar detayda galeri olarak görünür', () => {
+  const h = urunDetay({ ...temel, fotolar: ['img/urunler/albüm/a.jpg', 'img/urunler/albüm/b.jpg'] });
+  assert.ok(h.includes('class="urun-galeri"'));
+  assert.equal((h.match(/class="urun-galeri__foto"/g) || []).length, 2);
+  assert.ok(!urunDetay(temel).includes('urun-galeri'));
+});

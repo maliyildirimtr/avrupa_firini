@@ -3,7 +3,7 @@ export const GUNLER = ['pazartesi', 'sali', 'carsamba', 'persembe', 'cuma', 'cum
 const KATEGORILER = ['ekmek', 'kete', 'lezzet'];
 const ZORUNLU = ['id', 'ad', 'kategori', 'gunler', 'kisa', 'aciklama', 'icerik', 'lezzet', 'saglik', 'foto'];
 const YASAK = ['tedavi', 'iyileştir', 'şifa', 'hastalığa iyi', 'önler', 'glütensiz', 'glutensiz'];
-const IZINLI = new Set([...ZORUNLU, 'glutenIcerir', 'onecikan', 'dogrulandi']);
+const IZINLI = new Set([...ZORUNLU, 'glutenIcerir', 'onecikan', 'dogrulandi', 'fotolar']);
 // "karabuğday" glüten tahılı değildir; önünde harf olmayan buğday/çavdar/siyez/arpa/yulaf aranır.
 const GLUTEN_TAHILI = /(?<![a-zçğıöşü])(buğday|çavdar|siyez|arpa|yulaf)/;
 const SAAT = /^([01]\d|2[0-3]):[0-5]\d$/;
@@ -38,6 +38,7 @@ export function veriyiDogrula(site) {
       && u.icerik.some((x) => GLUTEN_TAHILI.test(String(x).toLocaleLowerCase('tr')))) {
       hatalar.push(`${ad}: içerikte glüten tahılı var, glutenIcerir true olmalı`);
     }
+    if (u.fotolar !== undefined && !(Array.isArray(u.fotolar) && u.fotolar.every((f) => typeof f === 'string' && f))) hatalar.push(`${ad}: fotolar dosya yolu listesi olmalı`);
     if (u.glutenIcerir !== true && u.glutenIcerir !== null) hatalar.push(`${ad}: glüten bilgisi true ya da null olmalı`);
     const metin = metinler(u);
     for (const y of YASAK) if (metin.includes(y)) hatalar.push(`${ad}: yasak ifade "${y}"`);

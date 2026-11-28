@@ -1,0 +1,22 @@
+/* Baskı (afiş, broşür) ortak stilleri. Renk ve yazı tipleri tema.css'ten gelir. */
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: var(--yazi-govde); color: var(--metin); background: var(--un); }
+h1, h2, h3 { font-family: var(--yazi-baslik); color: var(--lacivert-koyu); margin: 0; line-height: 1.1; }
+p { margin: 0; }
+img { display: block; max-width: 100%; }
+
+.fiyat-liste { list-style: none; margin: 0; padding: 0; }
+.fiyat-satir { display: flex; align-items: baseline; gap: 2mm; break-inside: avoid; }
+.fiyat-ad { font-weight: 500; }
+.fiyat-not { display: inline-block; margin-left: 1.5mm; font-weight: 700; color: #fff; background: var(--kirmizi); border-radius: 99px; padding: .2mm 2mm; font-size: .7em; vertical-align: .15em; }
+.fiyat-cizgi { flex: 1; min-width: 6mm; border-bottom: .5mm dotted rgba(31, 58, 110, .45); transform: translateY(-1mm); }
+.fiyat-tutar { font-family: var(--yazi-baslik); font-weight: 800; color: var(--lacivert-koyu); white-space: nowrap; }
+.fiyat-tutar--bos { min-width: 18mm; }
+.fiyat-grup { break-inside: avoid; }
+.fiyat-grup__baslik { color: var(--turuncu); }
+
+.yuvarlak-foto { border-radius: 50%; object-fit: cover; aspect-ratio: 1; border: 1.2mm solid #fff; box-shadow: 0 1.5mm 4mm rgba(20, 39, 73, .25); }
+.qr { background: #fff; padding: 1.5mm; border-radius: 2mm; }
+
+.fiyat-tutar--bos::after { content: '\00a0'; }

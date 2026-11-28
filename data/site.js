@@ -196,8 +196,9 @@ export const site = {
     }),
     urun({
       id: 'beypazari-urunleri', ad: 'Beypazarı Ürünleri', kategori: 'lezzet',
-      kisa: 'Ev yapımı erişte, makarna ve kuru çeşitleri.',
-      aciklama: 'Beypazarı’nın ev yapımı erişte, makarna ve kurularından seçtiğimiz paketli ürünler.',
+      kisa: 'Erişte, makarna, çorbalık, tarhana ve Beypazarı kurusu.',
+      aciklama: 'Beypazarı’ndan seçtiğimiz paketli ev ürünleri: erişte çeşitleri, kepekli erişte, kalın makarna, kare çorbalık, tarhana ve tereyağlı Beypazarı kurusu.',
+      fotolar: ['img/urunler/album/kalin-makarna.jpg', 'img/urunler/album/kepekli-eriste.jpg', 'img/urunler/album/kare-corbalik-1.jpg', 'img/urunler/album/kare-corbalik-2.jpg', 'img/urunler/album/tarhana.jpg', 'img/urunler/album/beypazari-kurusu.jpg'],
       icerik: [],
       lezzet: 'Ev yapımı tadında.',
       glutenIcerir: null,
@@ -205,6 +206,7 @@ export const site = {
     urun({
       id: 'peksimet', ad: 'Peksimet', kategori: 'lezzet',
       kisa: 'Tuzsuz, iki kez pişirilmiş peksimet.',
+      fotolar: ['img/urunler/album/peksimet-2.jpg', 'img/urunler/album/peksimet-instagram.jpg'],
       aciklama: 'Fırında iki kez pişirilerek kurutulan, tuz eklenmeden hazırlanan, uzun süre saklanabilen çıtır ekmek.',
       icerik: ['Buğday unu'],
       lezzet: 'Çıtır, hafif.',
@@ -265,9 +267,9 @@ export const site = {
       ] },
       { baslik: 'Beypazarı Ev Ürünleri', kalemler: [
         { ad: 'Erişte Çeşitleri', urun: 'beypazari-urunleri', fiyat: 150 },
-        { ad: 'Tarhana', fiyat: 200 },
-        { ad: 'Sade Beypazarı Kurusu', fiyat: 150 },
-        { ad: 'Çikolatalı / Çörek Otlu Beypazarı Kurusu', fiyat: 200 },
+        { ad: 'Tarhana', urun: 'beypazari-urunleri', fiyat: 200 },
+        { ad: 'Sade Beypazarı Kurusu', urun: 'beypazari-urunleri', fiyat: 150 },
+        { ad: 'Çikolatalı / Çörek Otlu Beypazarı Kurusu', urun: 'beypazari-urunleri', fiyat: 200 },
       ] },
     ],
   },

@@ -63,6 +63,8 @@ export function parcalar(site, sayfa, secenek = {}) {
     yil: String(new Date().getFullYear()),
     basOrtak: BAS_ORTAK,
     fiyatListesi: fiyatListesiHTML(site, { baglanti: true }),
+    fiyatListesiBaski: fiyatListesiHTML(site, { baglanti: false }),
+    telefonlarDuz: site.firma.telefonlar.map(kacis).join(' · '),
     fiyatTarihi: guncellemeTarihi(site),
     ustaBolumu: ustaBolumu({ href: 'keteler.html', metin: 'Ketelerimizi görün' }),
     ustaBolumuSade: ustaBolumu(null),
@@ -89,6 +91,15 @@ export async function olustur(kok, hedef, secenek = {}) {
   for (const sayfa of sayfalar) {
     const html = sablonuDoldur(readFileSync(join(kok, 'sayfalar', sayfa), 'utf8'), parcalar(site, sayfa, secenek));
     writeFileSync(join(hedef, sayfa), html);
+  }
+  // Baskı şablonları (afiş, broşür): baski/*.html → dist/baski/
+  const baskiKlasoru = join(kok, 'baski');
+  if (existsSync(baskiKlasoru)) {
+    mkdirSync(join(hedef, 'baski'), { recursive: true });
+    for (const d of readdirSync(baskiKlasoru).filter((x) => x.endsWith('.html'))) {
+      const html = sablonuDoldur(readFileSync(join(baskiKlasoru, d), 'utf8'), parcalar(site, d, secenek));
+      writeFileSync(join(hedef, 'baski', d), html);
+    }
   }
   return sayfalar;
 }

@@ -101,3 +101,10 @@ test('firma adres parçaları zorunlu', () => {
   delete s.firma.il;
   hataIcerir(veriyiDogrula(s), 'firma');
 });
+
+test('albüm fotoğrafları dizi olmalı ve dosyaları var olmalı', async () => {
+  const { existsSync } = await import('node:fs');
+  for (const u of site.urunler) for (const f of u.fotolar || []) assert.ok(existsSync(f), f);
+  const s = kopya(); s.urunler[0].fotolar = 'tek.jpg';
+  hataIcerir(veriyiDogrula(s), 'fotolar');
+});

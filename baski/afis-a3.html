@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Avrupa Fırını – Fiyat Listesi (A3 afiş)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../css/tema.css">
+<link rel="stylesheet" href="../css/baski.css">
+<style>
+  @page { size: 297mm 420mm; margin: 0; }
+  body { width: 297mm; height: 420mm; overflow: hidden; display: flex; flex-direction: column; }
+  .bas { background: var(--lacivert-koyu); border-bottom: 3mm solid var(--turuncu); padding: 13mm 18mm 11mm; display: flex; align-items: center; justify-content: space-between; gap: 10mm; }
+  .bas img { height: 40mm; width: auto; }
+  .bas__sag { text-align: right; color: #DCE3F0; }
+  .bas__sag strong { display: block; font-family: var(--yazi-baslik); font-size: 15pt; color: var(--turuncu); font-style: italic; font-weight: 500; }
+  .bas__sag span { font-size: 12pt; }
+  .baslik { padding: 11mm 18mm 4mm; display: flex; align-items: baseline; justify-content: space-between; gap: 8mm; }
+  .baslik h1 { font-size: 50pt; }
+  .baslik p { font-size: 13pt; color: var(--metin-soluk); text-align: right; max-width: 105mm; }
+  .liste { flex: 1; padding: 4mm 18mm 0; display: grid; grid-template-columns: 1fr 1fr; column-gap: 14mm; align-content: start; }
+  .fiyat-grup { margin-bottom: 6mm; }
+  .fiyat-grup:nth-child(1) { grid-column: 1; grid-row: 1 / span 2; }
+  .fiyat-grup:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .fiyat-grup:nth-child(3) { grid-column: 2; grid-row: 2; }
+  .fiyat-grup:nth-child(4) { grid-column: 1 / -1; grid-row: 3; }
+  .fiyat-grup:nth-child(4) .fiyat-liste { column-count: 2; column-gap: 14mm; }
+  .fiyat-grup__baslik { font-size: 22pt; margin-bottom: 2.5mm; padding-bottom: 1.5mm; border-bottom: .7mm solid var(--turuncu); }
+  .fiyat-satir { padding: 2.1mm 0; font-size: 14.5pt; }
+  .fiyat-tutar { font-size: 16pt; }
+  .fotolar { display: flex; justify-content: space-between; padding: 0 20mm 7mm; }
+  .fotolar figure { margin: 0; width: 44mm; text-align: center; }
+  .fotolar img { width: 40mm; margin: 0 auto 2mm; }
+  .fotolar figcaption { font-family: var(--yazi-baslik); font-weight: 700; font-size: 11pt; color: var(--lacivert-koyu); }
+  .alt { background: var(--lacivert-koyu); color: #DCE3F0; padding: 8mm 18mm; display: grid; grid-template-columns: 1fr auto; gap: 10mm; align-items: center; }
+  .alt__bilgi { display: grid; grid-template-columns: auto auto; gap: 2mm 10mm; font-size: 12pt; }
+  .alt__bilgi b { color: var(--turuncu); font-weight: 700; }
+  .alt__not { grid-column: 1 / -1; font-size: 10pt; color: #AEB9CF; margin-top: 2mm; }
+  .alt__qr { display: flex; align-items: center; gap: 4mm; font-size: 11pt; }
+  .alt__qr img { width: 30mm; height: 30mm; }
+  .alt__qr strong { display: block; color: #fff; font-size: 14pt; }
+</style>
+</head>
+<body>
+  <header class="bas">
+    <img src="../img/logo-yatay-acik-buyuk.png" alt="Avrupa Unlu Gıda Mamülleri – Damaklarda Kalan Tat">
+    <div class="bas__sag"><strong>1977'den beri taş fırında</strong><span>Doğal unlarla, her gün sıcak ve taze</span></div>
+  </header>
+  <div class="baslik">
+    <h1>Fiyat Listesi</h1>
+    <p>Ekmeklerimiz, ketelerimiz ve ev ürünlerimiz</p>
+  </div>
+  <main class="liste">
+{{fiyatListesiBaski}}
+  </main>
+  <div class="fotolar">
+    <figure><img class="yuvarlak-foto" src="../img/urunler/hamsili-ekmek.jpg" alt=""><figcaption>Hamsili Ekmek</figcaption></figure>
+    <figure><img class="yuvarlak-foto" src="../img/urunler/kete-tahinli.jpg" alt=""><figcaption>Tahinli Kete</figcaption></figure>
+    <figure><img class="yuvarlak-foto" src="../img/urunler/siyez.jpg" alt=""><figcaption>Siyez Ekmeği</figcaption></figure>
+    <figure><img class="yuvarlak-foto" src="../img/urunler/gumushane.jpg" alt=""><figcaption>Gümüşhane Ekmeği</figcaption></figure>
+    <figure><img class="yuvarlak-foto" src="../img/urunler/acibadem.jpg" alt=""><figcaption>Acıbadem</figcaption></figure>
+  </div>
+  <footer class="alt">
+    <div class="alt__bilgi">
+      <b>Adres</b><span>{{adres}}</span>
+      <b>Telefon</b><span>{{telefonlarDuz}}</span>
+      <p class="alt__not">Fiyatlar {{fiyatTarihi}} itibarıyla geçerlidir. Pazar günleri kapalıyız.</p>
+    </div>
+    <div class="alt__qr"><img class="qr" src="../img/qr-instagram.svg" alt="Instagram QR kodu"><div><strong>@avrupafirini</strong>Günlük ürünlerimiz<br>Instagram'da</div></div>
+  </footer>
+</body>
+</html>

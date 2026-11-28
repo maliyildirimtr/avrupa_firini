@@ -211,3 +211,10 @@ address { font-style: normal; }
 .fiyat-dipnot { margin-top: 28px; color: var(--metin-soluk); max-width: none; }
 .fiyat-dipnot a { white-space: nowrap; }
 @media (max-width: 760px) { .fiyat-izgara { grid-template-columns: 1fr; } }
+
+.fiyat-tutar--bos::after { content: '\00a0'; }
+
+/* Ürün albümü */
+.urun-galeri { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 8px; margin-top: 16px; }
+.urun-galeri__foto img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; transition: transform .2s; }
+.urun-galeri__foto:hover img { transform: scale(1.04); }

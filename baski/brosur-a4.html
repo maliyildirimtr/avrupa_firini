@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Avrupa Fırını – Broşür (A4 üç kırım)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">
+<link rel="stylesheet" href="../css/tema.css">
+<link rel="stylesheet" href="../css/baski.css">
+<style>
+  @page { size: 297mm 210mm; margin: 0; }
+  .sayfa { width: 297mm; height: 210mm; display: grid; grid-template-columns: 99mm 99mm 99mm; overflow: hidden; break-after: page; }
+  .panel { padding: 11mm 9mm; position: relative; display: flex; flex-direction: column; }
+  .panel + .panel { border-left: .2mm dashed rgba(0,0,0,.08); }
+  .koyu { background: var(--lacivert-koyu); color: #DCE3F0; }
+  .koyu h2 { color: #fff; }
+  .krem { background: var(--krem); }
+  h2 { font-size: 17pt; margin-bottom: 3mm; }
+  .fiyat-grup { margin-bottom: 5mm; }
+  .fiyat-grup__baslik { font-size: 14pt; margin-bottom: 1.5mm; padding-bottom: 1mm; border-bottom: .5mm solid var(--turuncu); }
+  .fiyat-satir { padding: 1.05mm 0; font-size: 9.2pt; }
+  .fiyat-tutar { font-size: 10pt; }
+  .fiyat-not { font-size: 6.5pt; }
+  /* kapak */
+  .kapak { justify-content: space-between; text-align: center; padding-top: 16mm; }
+  .kapak .logo { width: 78mm; margin: 0 auto; }
+  .kapak h1 { color: #fff; font-size: 24pt; margin: 6mm 0 2mm; }
+  .kapak p { font-size: 10pt; }
+  .kapak .fotolar { display: flex; justify-content: center; gap: 3mm; margin: 5mm 0; }
+  .kapak .fotolar img { width: 24mm; }
+  .kapak .serit { font-family: var(--yazi-baslik); font-style: italic; color: var(--turuncu); font-size: 13pt; }
+  /* arka panel */
+  .arka { text-align: center; justify-content: center; gap: 5mm; }
+  .arka .rozet { width: 62mm; margin: 0 auto; border-radius: 4mm; }
+  .bilgi { text-align: left; font-size: 9pt; display: grid; grid-template-columns: auto 1fr; gap: 1.5mm 4mm; }
+  .bilgi b { color: var(--turuncu); }
+  .qr-satir { display: flex; align-items: center; justify-content: center; gap: 3mm; font-size: 9pt; }
+  .qr-satir img { width: 22mm; height: 22mm; }
+  /* iç kapak */
+  .hikaye p { font-size: 9.5pt; line-height: 1.5; margin-bottom: 3mm; }
+  .hikaye .usta { width: 100%; height: 52mm; object-fit: cover; border-radius: 40mm 40mm 3mm 3mm; margin: 2mm 0 4mm; }
+  .hikaye ul { margin: 0; padding-left: 4mm; font-size: 9pt; line-height: 1.6; }
+  .mozaik { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm; margin-top: 3mm; }
+  .mozaik img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 3mm; }
+  .dipnot { margin-top: auto; font-size: 7.5pt; color: var(--metin-soluk); }
+  .koyu .dipnot { color: #AEB9CF; }
+</style>
+</head>
+<body>
+<!-- DIŞ YÜZ: [iç kapak (katlanan)] [arka] [ön kapak] -->
+<div class="sayfa">
+  <section class="panel krem hikaye">
+    <h2>Zeynep Usta’nın elinden</h2>
+    <img class="usta" src="../img/zeynep-usta.jpg" alt="">
+    <p>Ketelerimiz ve ev ürünlerimiz, Zeynep Usta’nın elleriyle yoğurduğu hamurdan, ev usulü hazırlanır.</p>
+    <ul>
+      <li>Doğal unlar</li>
+      <li>Taş fırında pişirme</li>
+      <li>Her gün sıcak ve taze</li>
+    </ul>
+    <p class="dipnot">{{colyakNotu}}</p>
+  </section>
+  <section class="panel koyu arka">
+    <img class="rozet" src="../img/logo-rozet-buyuk.jpg" alt="">
+    <div class="bilgi">
+      <b>Adres</b><span>{{adres}}</span>
+      <b>Telefon</b><span>{{telefonlarDuz}}</span>
+      <b>Saatler</b><span>Pazartesi–Cumartesi · Pazar kapalı</span>
+    </div>
+    <div class="qr-satir"><img class="qr" src="../img/qr-instagram.svg" alt=""><div><strong style="color:#fff">@avrupafirini</strong><br>Günlük ürünlerimiz Instagram’da</div></div>
+  </section>
+  <section class="panel koyu kapak">
+    <div>
+      <img class="logo" src="../img/logo-yatay-acik-buyuk.png" alt="Avrupa Unlu Gıda Mamülleri">
+      <h1>1977’den beri<br>taş fırında</h1>
+      <p>Trabzon Ortahisar</p>
+    </div>
+    <div class="fotolar">
+      <img class="yuvarlak-foto" src="../img/urunler/hamsili-ekmek.jpg" alt="">
+      <img class="yuvarlak-foto" src="../img/urunler/kete-pazili.jpg" alt="">
+      <img class="yuvarlak-foto" src="../img/urunler/cavdar.jpg" alt="">
+    </div>
+    <p class="serit">Fiyat listesi içeride</p>
+  </section>
+</div>
+<!-- İÇ YÜZ: üç panel fiyat listesi -->
+<div class="sayfa">
+  <section class="panel" id="ic-1"></section>
+  <section class="panel" id="ic-2"></section>
+  <section class="panel" id="ic-3"></section>
+</div>
+<template id="liste">{{fiyatListesiBaski}}</template>
+<p id="tarih" hidden>Fiyatlar {{fiyatTarihi}} itibarıyla geçerlidir.</p>
+<script>
+  // Grupları üç panele dağıt: Ekmekler | Keteler + Kurabiye | Beypazarı + not
+  const g = [...document.getElementById('liste').content.querySelectorAll('.fiyat-grup')];
+  const p = [1, 2, 3].map((i) => document.getElementById('ic-' + i));
+  const baslik = document.createElement('h2'); baslik.textContent = 'Fiyat Listesi'; p[0].append(baslik);
+  p[0].append(g[0]); p[1].append(g[1], g[2]); p[2].append(g[3]);
+  const m = document.createElement('div'); m.className = 'mozaik';
+  for (const f of ['kalin-makarna', 'tarhana', 'kare-corbalik-1', 'beypazari-kurusu']) { const i = new Image(); i.src = '../img/urunler/album/' + f + '.jpg'; i.alt = ''; m.append(i); }
+  p[2].append(m);
+  const t = document.getElementById('tarih'); t.hidden = false; t.className = 'dipnot'; p[2].append(t);
+</script>
+</body>
+</html>

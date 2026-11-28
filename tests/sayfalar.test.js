@@ -94,3 +94,14 @@ test('fiyatlar sayfası: liste, güncelleme tarihi, yazdır düğmesi', () => {
   assert.ok(h.includes('28 Kasım 2026'));
   assert.ok(h.includes('href="ekmeklerimiz.html#tam-bugday"'));
 });
+
+test('baskı şablonları: afiş ve broşür fiyatlarla üretilir, bağlantısız', () => {
+  for (const d of ['baski/afis-a3.html', 'baski/brosur-a4.html']) {
+    const h = oku(d);
+    assert.ok(!h.includes('{{'), d);
+    assert.ok(h.includes('750 ₺ / kg'), d);
+    assert.ok(h.includes('28 Kasım 2026'), d);
+    assert.ok(!/<li class="fiyat-satir">[^\n]*<a /.test(h), d + ' bağlantı içermemeli');
+    assert.ok(h.includes('qr-instagram.svg'), d);
+  }
+});

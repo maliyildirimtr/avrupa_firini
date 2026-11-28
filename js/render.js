@@ -48,6 +48,12 @@ function glutenSatiri(g) {
 }
 
 /** Doğrulanmamış ürünün içindekiler ve sağlık bilgisi yayınlanmaz; TASLAK=1 önizlemede etiketle görünür. */
+function galeri(urun) {
+  if (!urun.fotolar || !urun.fotolar.length) return '';
+  const fotolar = urun.fotolar.map((f, i) => `<a class="urun-galeri__foto" href="${kacis(f)}" target="_blank" rel="noopener"><img src="${kacis(f)}" alt="${kacis(`${urun.ad} – fotoğraf ${i + 2}`)}" loading="lazy" decoding="async" width="160" height="160"></a>`).join('');
+  return `<div class="urun-galeri" aria-label="${kacis(urun.ad)} fotoğrafları">${fotolar}</div>`;
+}
+
 export function urunDetay(urun, { taslakGoster = false } = {}) {
   const goster = urun.dogrulandi === true || taslakGoster;
   const taslak = urun.dogrulandi !== true && taslakGoster ? '<p class="taslak">Taslak — fırınla doğrulanacak</p>' : '';
@@ -68,6 +74,7 @@ export function urunDetay(urun, { taslakGoster = false } = {}) {
     <p><strong>Ne zaman:</strong> ${gunler}</p>
     <p class="gluten">${glutenSatiri(urun.glutenIcerir)}</p>
     ${saglik}
+    ${galeri(urun)}
   </div>
 </section>`;
 }
