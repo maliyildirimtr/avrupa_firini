@@ -13,7 +13,7 @@ const sayfalar = await olustur(kok, hedef);
 const oku = (s) => readFileSync(join(hedef, s), 'utf8');
 
 test('altı sayfa üretilir', () => {
-  for (const s of ['index.html', 'ekmeklerimiz.html', 'keteler.html', 'lezzetler.html', 'cizelge.html', 'iletisim.html'])
+  for (const s of ['index.html', 'ekmeklerimiz.html', 'keteler.html', 'lezzetler.html', 'fiyatlar.html', 'cizelge.html', 'iletisim.html'])
     assert.ok(sayfalar.includes(s), s);
 });
 
@@ -60,7 +60,8 @@ test('statik dosyalar kopyalanır', () => {
 test('arama motoru dosyaları: robots, sitemap (6 sayfa), 404', () => {
   assert.match(readFileSync(join(hedef, 'robots.txt'), 'utf8'), /Sitemap: https:\/\/avrupafirini\.com\/sitemap\.xml/);
   const sm = readFileSync(join(hedef, 'sitemap.xml'), 'utf8');
-  assert.equal((sm.match(/<loc>/g) || []).length, 6);
+  assert.equal((sm.match(/<loc>/g) || []).length, 7);
+  assert.ok(sm.includes('https://avrupafirini.com/fiyatlar.html'));
   assert.ok(existsSync(join(hedef, '404.html')));
   assert.ok(!oku('404.html').includes('{{'));
 });
@@ -84,4 +85,12 @@ test('keteler sayfasında da Zeynep Usta videosu var, ketelere giden düğme yok
   assert.match(h, /<video[^>]+class="usta__video"/);
   assert.ok(!h.includes('Ketelerimizi görün'));
   assert.ok(oku('index.html').includes('Ketelerimizi görün'));
+});
+
+test('fiyatlar sayfası: liste, güncelleme tarihi, yazdır düğmesi', () => {
+  const h = oku('fiyatlar.html');
+  assert.ok(h.includes('class="fiyat-grup"'));
+  assert.ok(h.includes('750 ₺ / kg'));
+  assert.ok(h.includes('28 Kasım 2026'));
+  assert.ok(h.includes('href="ekmeklerimiz.html#tam-bugday"'));
 });

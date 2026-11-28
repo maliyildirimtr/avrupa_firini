@@ -23,7 +23,7 @@ test('parçalar: kategoriye göre kart ve detay', () => {
 
 test('üst kısım menüsü ve aktif sayfa', () => {
   const h = ustKisim(site, 'keteler.html');
-  for (const ad of ['Ana Sayfa', 'Ekmeklerimiz', 'Keteler', 'Lezzetler', 'Çizelge', 'İletişim']) assert.ok(h.includes(ad), ad);
+  for (const ad of ['Ana Sayfa', 'Ekmeklerimiz', 'Keteler', 'Lezzetler', 'Fiyatlar', 'Çizelge', 'İletişim']) assert.ok(h.includes(ad), ad);
   assert.match(h, /href="keteler.html" aria-current="page"/);
 });
 

@@ -125,6 +125,7 @@ export const MENU = [
   ['ekmeklerimiz.html', 'Ekmeklerimiz'],
   ['keteler.html', 'Keteler'],
   ['lezzetler.html', 'Lezzetler'],
+  ['fiyatlar.html', 'Fiyatlar'],
   ['cizelge.html', 'Çizelge'],
   ['iletisim.html', 'İletişim'],
 ];

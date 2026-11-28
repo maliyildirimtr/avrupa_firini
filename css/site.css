@@ -193,3 +193,21 @@ address { font-style: normal; }
 .usta__liste li { position: relative; padding-left: 28px; }
 .usta__liste li::before { content: ''; position: absolute; left: 0; top: .45em; width: 14px; height: 14px; border-radius: 50%; background: var(--turuncu); box-shadow: inset 0 0 0 4px var(--krem); outline: 2px solid var(--turuncu); }
 @media (max-width: 720px) { .usta__ic { grid-template-columns: 1fr; } .usta__video { max-width: 340px; } }
+
+/* Fiyat listesi */
+.fiyat-izgara { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 36px); align-items: start; }
+.fiyat-grup { background: var(--krem); border-radius: 22px; padding: clamp(20px, 3vw, 32px); border-top: 5px solid var(--turuncu); }
+.fiyat-grup__baslik { font-size: var(--t-3); margin-bottom: .6em; }
+.fiyat-liste { list-style: none; margin: 0; padding: 0; }
+.fiyat-satir { display: flex; align-items: baseline; gap: 8px; padding: 9px 0; }
+.fiyat-satir + .fiyat-satir { border-top: 1px solid rgba(139, 90, 43, .12); }
+.fiyat-ad { font-weight: 500; }
+.fiyat-ad a { color: inherit; text-decoration: none; }
+.fiyat-ad a:hover { color: var(--lacivert); text-decoration: underline; text-decoration-color: var(--turuncu); }
+.fiyat-not { display: inline-block; margin-left: 6px; font-size: var(--t-0); font-weight: 700; color: #fff; background: var(--kirmizi); border-radius: 999px; padding: 1px 8px; vertical-align: 2px; }
+.fiyat-cizgi { flex: 1; min-width: 16px; border-bottom: 2px dotted rgba(31, 58, 110, .35); transform: translateY(-4px); }
+.fiyat-tutar { font-family: var(--yazi-baslik); font-weight: 800; font-size: var(--t-2); color: var(--lacivert-koyu); white-space: nowrap; }
+.fiyat-tutar--bos { min-width: 64px; }
+.fiyat-dipnot { margin-top: 28px; color: var(--metin-soluk); max-width: none; }
+.fiyat-dipnot a { white-space: nowrap; }
+@media (max-width: 760px) { .fiyat-izgara { grid-template-columns: 1fr; } }

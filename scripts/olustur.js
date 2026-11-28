@@ -9,6 +9,7 @@ import {
 import { haritaEmbedUrl, yolTarifiUrl, telLink, tamAdres } from '../js/harita.js';
 import { veriyiDogrula } from '../js/veri-dogrula.js';
 import { yapilandirilmisVeri, urunVerisi } from '../js/seo.js';
+import { fiyatListesiHTML, guncellemeTarihi } from '../js/fiyat.js';
 
 export function sablonuDoldur(sablon, p) {
   return sablon.replace(/\{\{\s*([\w:.-]+)\s*\}\}/g, (_, ad) => {
@@ -61,6 +62,8 @@ export function parcalar(site, sayfa, secenek = {}) {
     isletmeVerisi: jsonld(yapilandirilmisVeri(site)),
     yil: String(new Date().getFullYear()),
     basOrtak: BAS_ORTAK,
+    fiyatListesi: fiyatListesiHTML(site, { baglanti: true }),
+    fiyatTarihi: guncellemeTarihi(site),
     ustaBolumu: ustaBolumu({ href: 'keteler.html', metin: 'Ketelerimizi görün' }),
     ustaBolumuSade: ustaBolumu(null),
     tabanYol: kacis(secenek.tabanYol || '/'),
