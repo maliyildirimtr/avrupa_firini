@@ -47,6 +47,20 @@ export function veriyiDogrula(site) {
     if (!site.firma || !site.firma[alan]) hatalar.push(`firma: eksik alan "${alan}"`);
   }
 
+  const urunIdleri = new Set((site.urunler || []).map((u) => u.id));
+  const fl = site.fiyatListesi;
+  if (!fl || !Array.isArray(fl.gruplar) || fl.gruplar.length === 0) hatalar.push('fiyatListesi: en az bir grup olmalı');
+  else for (const g of fl.gruplar) {
+    if (!g.baslik) hatalar.push('fiyatListesi: grup başlığı eksik');
+    for (const k of g.kalemler || []) {
+      const ad = k.ad || '(adsız)';
+      if (!k.ad) hatalar.push(`fiyat: kalem ad eksik (${g.baslik})`);
+      if (k.fiyat !== null && !(Number.isInteger(k.fiyat) && k.fiyat > 0)) hatalar.push(`fiyat: ${ad} için fiyat pozitif tam sayı ya da null olmalı`);
+      if (k.urun !== undefined && !urunIdleri.has(k.urun)) hatalar.push(`fiyat: ${ad} bilinmeyen ürün "${k.urun}"`);
+      if (k.birim !== undefined && !['kg', 'adet', 'paket'].includes(k.birim)) hatalar.push(`fiyat: ${ad} geçersiz birim "${k.birim}"`);
+    }
+  }
+
   const s = site.saatler || {};
   if (s.pazar !== null) hatalar.push('saatler: pazar null (kapalı) olmalı');
   for (const g of GUNLER.slice(0, 6)) {

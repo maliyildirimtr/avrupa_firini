@@ -229,6 +229,49 @@ export const site = {
     }),
   ],
 
+  // Fiyat listesi — site, afiş ve broşür buradan beslenir. Fiyat bilinmiyorsa fiyat: null (boş görünür).
+  // birim: yazılmazsa adet/paket fiyatıdır; 'kg' ise "/ kg" eklenir. urun: ürün sayfasındaki id (varsa bağlantı olur).
+  fiyatListesi: {
+    guncelleme: '2026-11-28',
+    gruplar: [
+      { baslik: 'Ekmekler', kalemler: [
+        { ad: 'Tam Buğday Ekmeği', urun: 'tam-bugday', fiyat: 50 },
+        { ad: 'Çavdar Ekmeği', urun: 'cavdar', fiyat: 50 },
+        { ad: 'Mısır Ekmeği', urun: 'misir', fiyat: 100 },
+        { ad: 'Gümüşhane Ekmeği', urun: 'gumushane', fiyat: 100 },
+        { ad: 'Karakılçık Buğday Ekmeği', urun: 'karakilcik', fiyat: 75, not: 'Salı' },
+        { ad: 'Siyez Buğdaylı Ekmek', urun: 'siyez', fiyat: 75 },
+        { ad: 'Yulaf Ekmeği', fiyat: 75 },
+        { ad: 'Hamsili Ekmek – Büyük', urun: 'hamsili-ekmek', fiyat: 200 },
+        { ad: 'Hamsili Ekmek – Küçük', urun: 'hamsili-ekmek', fiyat: 100 },
+        { ad: 'Çok Tahıllı Ekmek', urun: 'tahilli', fiyat: null },
+        { ad: 'Greçka Ekmeği', urun: 'grecka', fiyat: null },
+        { ad: 'Kabaklı Mısır Ekmeği', urun: 'kabakli-misir', fiyat: null },
+      ] },
+      { baslik: 'Keteler', kalemler: [
+        { ad: 'Tahinli Kete', urun: 'kete-tahinli', fiyat: 150 },
+        { ad: 'Cevizli / Fındıklı Kete', urun: 'kete-cevizli', fiyat: 150 },
+        { ad: 'Haşhaşlı Kete', urun: 'kete-hashasli', fiyat: 150 },
+        { ad: 'Tereyağlı Unlu Kete', urun: 'kete-tereyagli', fiyat: 120 },
+        { ad: 'Pazılı Kete', urun: 'kete-pazili', fiyat: 120 },
+      ] },
+      { baslik: 'Kurabiye ve Kurular', kalemler: [
+        { ad: 'Meyveli Kurabiye', urun: 'meyveli-kurabiye', fiyat: 40 },
+        { ad: 'Acıbadem Kurabiyesi', urun: 'acibadem', fiyat: 75 },
+        { ad: 'Peksimet', urun: 'peksimet', fiyat: 60 },
+        { ad: 'Selanik Gevreği', fiyat: 750, birim: 'kg' },
+        { ad: 'Kurutulmuş Çavdar', urun: 'kurutulmus-cavdar', fiyat: null },
+        { ad: 'Pazılı Börek', urun: 'pazili-borek', fiyat: null },
+      ] },
+      { baslik: 'Beypazarı Ev Ürünleri', kalemler: [
+        { ad: 'Erişte Çeşitleri', urun: 'beypazari-urunleri', fiyat: 150 },
+        { ad: 'Tarhana', fiyat: 200 },
+        { ad: 'Sade Beypazarı Kurusu', fiyat: 150 },
+        { ad: 'Çikolatalı / Çörek Otlu Beypazarı Kurusu', fiyat: 200 },
+      ] },
+    ],
+  },
+
   // Yayın öncesi tamamlanacaklar (README'de de listelidir; sitede görünmez).
   eksikler: [
     'Gerçek çalışma saatleri (hafta içi ve cumartesi)',
