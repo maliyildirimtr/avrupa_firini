@@ -58,6 +58,7 @@ export function veriyiDogrula(site) {
       if (!k.ad) hatalar.push(`fiyat: kalem ad eksik (${g.baslik})`);
       if (k.fiyat !== null && !(Number.isInteger(k.fiyat) && k.fiyat > 0)) hatalar.push(`fiyat: ${ad} için fiyat pozitif tam sayı ya da null olmalı`);
       if (k.urun !== undefined && !urunIdleri.has(k.urun)) hatalar.push(`fiyat: ${ad} bilinmeyen ürün "${k.urun}"`);
+      if (k.foto !== undefined && (typeof k.foto !== 'string' || !k.foto)) hatalar.push(`fiyat: ${ad} foto dosya yolu olmalı`);
       if (k.birim !== undefined && !['kg', 'adet', 'paket'].includes(k.birim)) hatalar.push(`fiyat: ${ad} geçersiz birim "${k.birim}"`);
     }
   }

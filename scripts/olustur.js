@@ -9,7 +9,7 @@ import {
 import { haritaEmbedUrl, yolTarifiUrl, telLink, tamAdres } from '../js/harita.js';
 import { veriyiDogrula } from '../js/veri-dogrula.js';
 import { yapilandirilmisVeri, urunVerisi } from '../js/seo.js';
-import { fiyatListesiHTML, guncellemeTarihi } from '../js/fiyat.js';
+import { fiyatListesiHTML, guncellemeTarihi, fiyatKartlariHTML } from '../js/fiyat.js';
 
 export function sablonuDoldur(sablon, p) {
   return sablon.replace(/\{\{\s*([\w:.-]+)\s*\}\}/g, (_, ad) => {
@@ -35,6 +35,8 @@ const BAS_ORTAK = `<meta charset="utf-8">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,700;0,800;1,500&family=Figtree:wght@400;500;600;700&display=swap&subset=latin-ext">
 <link rel="stylesheet" href="css/tema.css">
 <link rel="stylesheet" href="css/site.css">`;
+
+const KOK = join(dirname(fileURLToPath(import.meta.url)), '..');
 
 const jsonld = (o) => `<script type="application/ld+json">${JSON.stringify(o).replace(/</g, '\\u003c')}</script>`;
 
@@ -64,6 +66,7 @@ export function parcalar(site, sayfa, secenek = {}) {
     basOrtak: BAS_ORTAK,
     fiyatListesi: fiyatListesiHTML(site, { baglanti: true }),
     fiyatListesiBaski: fiyatListesiHTML(site, { baglanti: false }),
+    fiyatKartlari: fiyatKartlariHTML(site, { dosyaVar: (y) => existsSync(join(KOK, y)) }),
     telefonlarDuz: site.firma.telefonlar.map(kacis).join(' · '),
     fiyatTarihi: guncellemeTarihi(site),
     ustaBolumu: ustaBolumu({ href: 'keteler.html', metin: 'Ketelerimizi görün' }),

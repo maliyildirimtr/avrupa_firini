@@ -232,7 +232,7 @@ export const site = {
   ],
 
   // Fiyat listesi — site, afiş ve broşür buradan beslenir. Fiyat bilinmiyorsa fiyat: null (boş görünür).
-  // birim: yazılmazsa adet/paket fiyatıdır; 'kg' ise "/ kg" eklenir. urun: ürün sayfasındaki id (varsa bağlantı olur).
+  // foto: afişte kullanılacak fotoğraf (yazılmazsa ürünün ana fotoğrafı). birim: yazılmazsa adet/paket fiyatıdır; 'kg' ise "/ kg" eklenir. urun: ürün sayfasındaki id (varsa bağlantı olur).
   fiyatListesi: {
     guncelleme: '2026-11-28',
     gruplar: [
@@ -266,10 +266,10 @@ export const site = {
         { ad: 'Pazılı Börek', urun: 'pazili-borek', fiyat: null },
       ] },
       { baslik: 'Beypazarı Ev Ürünleri', kalemler: [
-        { ad: 'Erişte Çeşitleri', urun: 'beypazari-urunleri', fiyat: 150 },
-        { ad: 'Tarhana', urun: 'beypazari-urunleri', fiyat: 200 },
-        { ad: 'Sade Beypazarı Kurusu', urun: 'beypazari-urunleri', fiyat: 150 },
-        { ad: 'Çikolatalı / Çörek Otlu Beypazarı Kurusu', urun: 'beypazari-urunleri', fiyat: 200 },
+        { ad: 'Erişte Çeşitleri', urun: 'beypazari-urunleri', fiyat: 150, foto: 'img/urunler/album/kepekli-eriste.jpg' },
+        { ad: 'Tarhana', urun: 'beypazari-urunleri', fiyat: 200, foto: 'img/urunler/album/tarhana.jpg' },
+        { ad: 'Sade Beypazarı Kurusu', urun: 'beypazari-urunleri', fiyat: 150, foto: 'img/urunler/album/beypazari-kurusu.jpg' },
+        { ad: 'Çikolatalı / Çörek Otlu Beypazarı Kurusu', urun: 'beypazari-urunleri', fiyat: 200, foto: 'img/urunler/album/beypazari-kurusu.jpg' },
       ] },
     ],
   },

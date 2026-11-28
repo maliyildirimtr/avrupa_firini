@@ -52,3 +52,20 @@ test('fiyat listesi HTML: gruplar, bağlantılar, boş fiyat, kaçış', () => {
   const s = kopya(); s.fiyatListesi.gruplar[0].kalemler[0].ad = 'A & <B>';
   assert.ok(fiyatListesiHTML(s).includes('A &amp; &lt;B&gt;'));
 });
+
+test('afiş kartları: her kalem fotoğraflı kart, fiyat kutuda', async () => {
+  const { fiyatKartlariHTML } = await import('../js/fiyat.js');
+  const h = fiyatKartlariHTML(site);
+  const n = fiyatSatirlari(site).length;
+  assert.equal((h.match(/class="afis-kart"/g) || []).length, n);
+  assert.equal((h.match(/class="fiyat-kutu(?: fiyat-kutu--bos)?"/g) || []).length, n);
+  assert.ok(h.includes('src="../img/urunler/album/tarhana.jpg"'));
+  assert.ok(h.includes('src="../img/urunler/tam-bugday.jpg"'));
+  assert.ok(h.includes('afis-kart__foto--bos'), 'fotoğrafı olmayan kalem yer tutucu alır');
+});
+
+test('fiyat kalemi foto alanı: dosya var olmalı', async () => {
+  const { existsSync } = await import('node:fs');
+  for (const r of fiyatSatirlari(site)) if (r.foto) assert.ok(existsSync(r.foto), r.foto);
+  const s = kopya(); s.fiyatListesi.gruplar[0].kalemler[0].foto = 5; hataVar(s, 'foto');
+});
